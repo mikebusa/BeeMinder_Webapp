@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {Link } from "react-router-dom";
 
 const HomePageNavBar = (props) => {
 	const {
-		buttonLabel,
 		className
 	} = props;
 	const [collapsed, setCollapsed] = useState(true);
@@ -20,10 +19,13 @@ const HomePageNavBar = (props) => {
 				<Collapse isOpen={!collapsed} navbar>
 					<Nav navbar>
 						<NavItem>
-							<NavLink href="/components/"><Button color = "dark">My Account </Button></NavLink>
+							<Link to="/MyAccount"><Button color="dark">My Account</Button></Link>
 						</NavItem>
 						<NavItem>
-							<Button color="dark" onClick={toggleModal}>Add New Hive</Button>
+							<h5>" "</h5>
+						</NavItem>
+						<NavItem>
+							<Button color="dark" onClick={toggleModal}>+ Add New Hive</Button>
 							<Modal isOpen={modal} toggleModal={toggleModal} className={className}>
 								<ModalHeader toggleModal={toggleModal}>Add A New Hive</ModalHeader>
 								<ModalBody>
