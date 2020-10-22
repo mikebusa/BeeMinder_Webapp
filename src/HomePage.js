@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomePageNavBar from './HomePageNavBar';
 import HomePageHiveTile from './HomePageHiveTile';
+import Footer from './Footer'
 import {
     Container,
     Row,
@@ -35,7 +36,6 @@ class HomePage extends Component {
 					<p className="lead">This is the homepage where you can see a all of your hives at a glance by hitting the details button.</p>
 					<hr className="my-2" />
 					<p>To see more information on a specific hive, click on Go To Hive. To navigate around the webpage, use the Menu Bar in the top left corner.</p>
-					
                 </Jumbotron>
 				<Container>
 					<CardDeck>
@@ -46,13 +46,7 @@ class HomePage extends Component {
 				</Container>
 				<br />
 				<br />
-				<div>  
-					<Navbar color="secondary" dark>
-						<NavbarBrand>
-							<p style={{alignItems: 'center'}}>BeeMinder 2020</p>
-						</NavbarBrand>
-					</Navbar>
-				</div>
+				<Footer />
             </div>
         );
     }

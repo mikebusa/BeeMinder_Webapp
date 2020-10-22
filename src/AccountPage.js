@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import HomePageNavBar from './HomePageNavBar';
+import Footer from './Footer'
 import {
     Container,
     Row,
     Col,
     Jumbotron,
 	CardDeck,
-	Table
+	Table,
+	Navbar,
+	NavbarBrand
 } from 'reactstrap';
+import {Link } from "react-router-dom";
 
 class AccountPage extends Component {s
     constructor(props) {
@@ -49,7 +53,7 @@ class AccountPage extends Component {s
 					<tbody>
 						<tr>
 							<th scope="row">1</th>
-							<td>Hive 1</td>
+							<td><Link to="/MyHive">Hive 1</Link></td>
 							<td>10/19/20 02:41:53 pm</td>
 							<td>05/20/20</td>
 							<td  style={{ color: 'green' }}>Good</td>
@@ -65,11 +69,12 @@ class AccountPage extends Component {s
 							<th scope="row">3</th>
 							<td>Hive 3</td>
 							<td>10/18/20 11:14:21 am</td>
-							<td>6/30/20</td>
+							<td>06/30/20</td>
 							<td  style={{ color: 'red' }}>Check Your Hive</td>
 						</tr>
 					</tbody>
 				</Table>
+				<Footer />
             </div>
         );
     }

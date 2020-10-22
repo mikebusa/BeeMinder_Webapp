@@ -22,7 +22,7 @@ const HomePageNavBar = (props) => {
 							<Link to="/MyAccount"><Button color="dark">My Account</Button></Link>
 						</NavItem>
 						<NavItem>
-							<h5>" "</h5>
+							<h5> </h5>
 						</NavItem>
 						<NavItem>
 							<Button color="dark" onClick={toggleModal}>+ Add New Hive</Button>

@@ -3,6 +3,7 @@ import {
   Card, CardText, CardBody,
   CardTitle, Button, Collapse
 } from 'reactstrap';
+import {Link } from "react-router-dom";
 
 const HomePageHiveTile = (props) => {
   const HiveNumber = 3;
@@ -16,7 +17,7 @@ const HomePageHiveTile = (props) => {
 				<h2>
 					<CardTitle>Hive {HiveNumber}</CardTitle>
 				</h2>
-				<Button color="primary" onClick={toggle}>Details</Button> <Button color="success">Go To Hive</Button>
+				<Button color="primary" onClick={toggle}>Details</Button> <Link to="/MyHive"><Button color="success">Go To Hive</Button></Link>
 				<Collapse isOpen={isOpen}>
 					<br />
 					<CardText>Inside Temp: </CardText>
