@@ -3,10 +3,7 @@ import HomePageNavBar from './HomePageNavBar';
 import Footer from './Footer'
 import {
     Container,
-    Row,
-    Col,
     Jumbotron,
-	CardDeck,
 	Table,
 	Media
 } from 'reactstrap';

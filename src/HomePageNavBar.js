@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import {Link } from "react-router-dom";
+import NewHiveForm from './NewHiveForm'
 
 const HomePageNavBar = (props) => {
 	const {
-		className
+    className
 	} = props;
 	const [collapsed, setCollapsed] = useState(true);
-	const [modal, setModal] = useState(false);
 	const toggleNavbar = () => setCollapsed(!collapsed);
-	const toggleModal = () => setModal(!modal);
+	
+	const [NewHiveModal, setNewHiveModal] = useState(false);
+	const toggleNewHiveModal = () => setNewHiveModal(!NewHiveModal);
+	const closeBtn = <button className="close" onClick={toggleNewHiveModal}>&times;</button>;
+
+	const [SignOutModal, setSignOutModal] = useState(false);
+	const toggleSignOutModal = () => setSignOutModal(!SignOutModal);
 
 	return (
 		<div>
@@ -19,38 +25,33 @@ const HomePageNavBar = (props) => {
 				<Collapse isOpen={!collapsed} navbar>
 					<Nav navbar>
 						<NavItem>
-							<Link to="/MyAccount"><Button color="dark">My Account</Button></Link>
+							<Button color="dark" onClick={toggleNewHiveModal}>+ New Hive</Button>
+							<Modal isOpen={NewHiveModal} toggleNewHiveModal={toggleNewHiveModal} className={className}>
+								<ModalHeader toggleNewHiveModal={toggleNewHiveModal} close={closeBtn}>Add a New Hive</ModalHeader>
+								<ModalBody>
+									<NewHiveForm />
+								</ModalBody>
+							</Modal>
 						</NavItem>
 						<NavItem>
 							<h5> </h5>
 						</NavItem>
 						<NavItem>
-							<Button color="dark" onClick={toggleModal}>+ Add New Hive</Button>
-							<Modal isOpen={modal} toggleModal={toggleModal} className={className}>
-								<ModalHeader toggleModal={toggleModal}>Add A New Hive</ModalHeader>
+							<Link to="/MyAccount"><Button color="dark">My Hives</Button></Link>
+						</NavItem>
+						<NavItem>
+							<h5> </h5>
+						</NavItem>
+						<NavItem>
+							<Button color="dark" onClick={toggleSignOutModal}>Sign Out</Button>
+							<Modal isOpen={SignOutModal} toggleSignOutModal={toggleSignOutModal} className={className}>
+								<ModalHeader toggleSignOutModal={toggleSignOutModal}>Sign Out</ModalHeader>
 								<ModalBody>
-									<Form>
-										<FormGroup>
-											<Label for="username">Username</Label>
-											<Input type="username" name="username" id="username"/>
-										</FormGroup>
-										<FormGroup>
-											<Label for="password">Password</Label>
-											<Input type="password" name="" id="password"/>
-										</FormGroup>
-										<FormGroup>
-											<Label for="hivename">New Hive Name</Label>
-											<Input type="hivename" name="" id="hivename"/>
-										</FormGroup>
-										<FormGroup>
-											<Label for="hiveID">Hive ID Number</Label>
-											<Input type="text" name="" id="hiveID" placeholder = "Six digit number found in user manual"/>
-										</FormGroup>
-									</Form>
+									<p>Are you sure you want to sign out?</p>
 								</ModalBody>
 								<ModalFooter>
-									<Button color="primary" onClick={toggleModal}>Create Hive</Button>{' '}
-									<Button color="secondary" onClick={toggleModal}>Cancel</Button>
+									<Button color="primary" onClick={toggleSignOutModal}>Sign Out</Button>{' '}
+									<Button color="secondary" onClick={toggleSignOutModal}>Cancel</Button>
 								</ModalFooter>
 							</Modal>
 						</NavItem>

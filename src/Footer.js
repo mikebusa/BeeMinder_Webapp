@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
+import React from 'react';
+import { Navbar, NavbarText } from 'reactstrap';
 
 const Footer = (props) => {
-	const {
-		className
-	} = props;
-
 	return (
 		<div>  
 			<Navbar color="secondary" dark>
-				<NavbarBrand>
-					<p style={{textAlign: 'center'}}>BeeMinder 2020</p>
-				</NavbarBrand>
+				<NavbarText>BeeMinder 2020</NavbarText>
 			</Navbar>
 		</div>
 	);

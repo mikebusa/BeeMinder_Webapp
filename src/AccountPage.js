@@ -6,10 +6,7 @@ import {
     Row,
     Col,
     Jumbotron,
-	CardDeck,
 	Table,
-	Navbar,
-	NavbarBrand
 } from 'reactstrap';
 import {Link } from "react-router-dom";
 
