@@ -55,6 +55,7 @@ class NewHiveForm extends Component {
 				}	
 			}
 		}
+		this.onSubmitForm = this.onSubmitForm.bind(this);
 	}
 	
 
@@ -88,13 +89,12 @@ class NewHiveForm extends Component {
 	}
 	  
 	  
-	formSubmitHandler = () => {
+	onSubmitForm() {
 		const formData = {};
 		for (let formElementId in this.state.formControls) {
 			formData[formElementId] = this.state.formControls[formElementId].value;
 		}
-		
-		console.dir(formData);
+		this.props.onFormSubmit(formData);
 	}
 	
 	render() {
@@ -132,7 +132,7 @@ class NewHiveForm extends Component {
 					touched={this.state.formControls.HiveID.touched}
 					valid={this.state.formControls.HiveID.valid}
 				/>
-				<Button color = "primary" onClick={this.formSubmitHandler} disabled={! this.state.formIsValid}>Submit</Button>
+				<Button color = "primary" onClick={this.onSubmitForm} disabled={! this.state.formIsValid}>Submit</Button>
 			</div>
 		);
 	}

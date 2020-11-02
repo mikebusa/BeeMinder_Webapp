@@ -6,21 +6,18 @@ import {
     Container,
     Jumbotron,
 	CardDeck,
+	Button,
+	Row,
+	Col,
+	Card,
+	CardText,
+	CardBody,
+	CardTitle
 } from 'reactstrap';
 
 class HomePage extends Component {
     constructor(props) {
         super(props);
-
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            isOpen: false
-        };
-    }
-    toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
     }
     render() {
         return (
@@ -33,11 +30,15 @@ class HomePage extends Component {
 					<p>To see more information on a specific hive, click on Go To Hive. To navigate around the webpage, use the Menu Bar in the top left corner.</p>
                 </Jumbotron>
 				<Container>
-					<CardDeck>
-						<HomePageHiveTile hiveTitle={'Hive 1'} />
-						<HomePageHiveTile hiveTitle={'Hive 2'} />
-						<HomePageHiveTile hiveTitle={'Hive 3'} />
-					</CardDeck>
+						<CardDeck>
+							<HomePageHiveTile hiveTitle={'Hive 1'} />
+							<HomePageHiveTile hiveTitle={'Hive 2'} />
+							<HomePageHiveTile hiveTitle={'Hive 3'} />
+							<CardBody>
+								<CardText style = {{color: "green"}}>a</CardText>
+								<Button color = "success">+ Add New Hive</Button>
+							</CardBody>
+						</CardDeck>
 				</Container>
 				<br />
 				<br />
