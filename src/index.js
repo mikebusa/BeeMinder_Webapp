@@ -1,20 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HomePage from './HomePage';
-import AccountPage from './AccountPage';
-import HivePage from './HivePage';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import BeeMinderApp from './BeeMinderApp';
 
 ReactDOM.render(
-    <BrowserRouter>
-		<Switch>
-			<Route exact path="/" component={HomePage} />
-			<Route path="/MyAccount" component={AccountPage} />
-			<Route path="/MyHive" component={HivePage} />
-		</Switch>
-	</BrowserRouter>,
+    <BeeMinderApp/>,
 	document.getElementById('root')
 );
 
