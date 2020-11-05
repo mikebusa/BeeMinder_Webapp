@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 import { render } from 'react-dom';
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BeeMinderApp from './BeeMinderApp';
 // Apollo
@@ -36,18 +36,18 @@ async function getValidAccessToken() {
 }
 
 const client = new ApolloClient({
-link: new HttpLink({
-	uri: graphql_url,
-	// We define a custom fetch handler for the Apollo client that lets us authenticate GraphQL requests.
-	// The function intercepts every Apollo HTTP request and adds an Authorization header with a valid
-	// access token before sending the request.
-	fetch: async (uri, options) => {
-	const accessToken = await getValidAccessToken();
-	options.headers.Authorization = `Bearer ${accessToken}`;
-	return fetch(uri, options);
-	},
-}),
-cache: new InMemoryCache()
+	link: new HttpLink({
+		uri: graphql_url,
+		// We define a custom fetch handler for the Apollo client that lets us authenticate GraphQL requests.
+		// The function intercepts every Apollo HTTP request and adds an Authorization header with a valid
+		// access token before sending the request.
+		fetch: async (uri, options) => {
+			const accessToken = await getValidAccessToken();
+			options.headers.Authorization = `Bearer ${accessToken}`;
+			return fetch(uri, options);
+		},
+	}),
+	cache: new InMemoryCache()
 });
 
 render(
@@ -60,4 +60,4 @@ render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// serviceWorker.unregister();
