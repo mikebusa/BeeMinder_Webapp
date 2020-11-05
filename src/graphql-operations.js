@@ -20,3 +20,12 @@ export const UPDATE_HIVE = gql`
     }
   }
 `;
+
+export const CREATE_HIVE = gql`
+  mutation CreateHiveHive($data: HiveInsertInput!) {
+    insertOneHive(data: $data) {
+      _id
+      name
+    }
+  }
+`;
