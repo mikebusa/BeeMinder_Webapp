@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import TextInput from './TextInput';
 import validate from './validate';
-import Password from './Password';
 
 class NewHiveForm extends Component {
 	constructor() {
@@ -12,27 +11,6 @@ class NewHiveForm extends Component {
 			formIsValid: false,
 			formControls: {
 				
-				username: {
-					value: '',
-					placeholder: 'Username',
-					valid: false,
-					validationRules: {
-						minLength: 4,
-						isRequired: true
-					},
-					touched: false
-				},
-				psword: {
-					value: '',
-					placeholder: 'Password',
-					valid: false,
-					validationRules: {
-						minLength: 4,
-						isRequired: true,
-						isPassword: true
-					},
-					touched: false
-				},
 				HiveName: {
 					value: '',
 					placeholder: 'Hive Name',
@@ -101,22 +79,6 @@ class NewHiveForm extends Component {
 		
 		return (
 			<div className = "App">
-				<TextInput name="username" 
-					placeholder={this.state.formControls.username.placeholder}
-					value={this.state.formControls.username.value}
-					onChange={this.changeHandler}
-					touched={this.state.formControls.username.touched}
-					valid={this.state.formControls.username.valid}
-				/>
-				
-				<Password name="psword"
-					placeholder={this.state.formControls.psword.placeholder}
-					value={this.state.formControls.psword.value}
-					onChange={this.changeHandler}
-					touched={this.state.formControls.psword.touched}
-					valid={this.state.formControls.psword.valid}
-				/>
-
 				<TextInput name="HiveName"
 					placeholder={this.state.formControls.HiveName.placeholder}
 					value={this.state.formControls.HiveName.value}
@@ -132,7 +94,7 @@ class NewHiveForm extends Component {
 					touched={this.state.formControls.HiveID.touched}
 					valid={this.state.formControls.HiveID.valid}
 				/>
-				<Button color = "primary" onClick={this.onSubmitForm} disabled={! this.state.formIsValid}>Submit</Button>
+				<Button color = "primary" onClick={this.onSubmitForm} disabled={!this.state.formIsValid}>Submit</Button>
 			</div>
 		);
 	}

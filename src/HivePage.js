@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HomePageNavBar from './HomePageNavBar';
+import HivePageNavBar from './HivePageNavBar';
 import Footer from './Footer'
 import {
     Container,
@@ -25,7 +25,7 @@ class HivePage extends Component {s
 	render() {
         return (
             <div>
-				<HomePageNavBar />
+				<HivePageNavBar />
 				<Jumbotron>
                     <h1 className="display-4">Hive Title</h1>
 					<hr className="my-2" />

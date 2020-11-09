@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
 import HomePageNavBar from './HomePageNavBar';
 import HomePageHiveTile from './HomePageHiveTile';
+import NewHiveForm from './NewHiveForm'
 import Footer from './Footer'
 import {
     Container,
     Jumbotron,
 	CardDeck,
 	Button,
-	Row,
-	Col,
-	Card,
-	CardText,
 	CardBody,
-	CardTitle
+	Modal, 
+	ModalHeader, 
+	ModalBody
 } from 'reactstrap';
 
 class HomePage extends Component {
     constructor(props) {
-        super(props);
+		super();
+		this.state = {
+			NewHiveModal:false,
+		};
+		this.submitForm = this.submitForm.bind(this);
+		this.toggleNewHiveModal = this.toggleNewHiveModal.bind(this);
     }
+	
+	submitForm(values) {
+		this.setState({ values, NewHiveModal:false });
+	}
+	
+	toggleNewHiveModal() {
+		const currentState = this.state.NewHiveModal;
+		this.setState({ NewHiveModal: !currentState });
+	}
+	
     render() {
+		const { values } = this.state;
         return (
             <div>
 				<HomePageNavBar />
@@ -35,11 +50,23 @@ class HomePage extends Component {
 							<HomePageHiveTile hiveTitle={'Hive 2'} />
 							<HomePageHiveTile hiveTitle={'Hive 3'} />
 							<CardBody>
-								<CardText style = {{color: "green"}}>a</CardText>
-								<Button color = "success">+ Add New Hive</Button>
+								<br/>
+								<br/>
+								<br/>
+								<br/>
+								<Button color = "success" onClick={this.toggleNewHiveModal}>+ New Hive</Button>
+								<Modal isOpen={this.state.NewHiveModal} toggle={this.toggleNewHiveModal} className={this.className}>
+									<ModalHeader toggle={this.toggleNewHiveModal} close={<button className="close" onClick={this.toggleNewHiveModal}>&times;</button>}>Add a New Hive</ModalHeader>
+									<ModalBody>
+										<NewHiveForm onFormSubmit={this.submitForm}/>
+									</ModalBody>
+								</Modal>
 							</CardBody>
 						</CardDeck>
 				</Container>
+				Submitted form values : <br/>
+				Hive name: {values && values.HiveName} <br/>
+				HiveID: {values && values.HiveID} <br/>
 				<br />
 				<br />
 				<Footer />
