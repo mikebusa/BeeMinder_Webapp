@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HomePageNavBar from './HomePageNavBar';
+import AccountPageNavBar from './AccountPageNavBar';
 import Footer from './Footer'
 import {
     Container,
@@ -7,19 +7,24 @@ import {
     Col,
     Jumbotron,
 	Table,
+	Button,
+	Modal,
+	ModalHeader,
+	ModalBody,
+	ModalFooter
 } from 'reactstrap';
 import {Link } from "react-router-dom";
 
 class AccountPage extends Component {s
     constructor(props) {
-        super(props);
+        super();
 
-        this.toggle = this.toggle.bind(this);
+        this.toggleDelete = this.toggleDelete.bind(this);
         this.state = {
             isOpen: false
         };
     }
-	toggle() {
+	toggleDelete() {
         this.setState({
             isOpen: !this.state.isOpen
         });
@@ -27,7 +32,7 @@ class AccountPage extends Component {s
 	render() {
         return (
             <div>
-				<HomePageNavBar />
+				<AccountPageNavBar />
 				<Jumbotron color = "dark">
                     <Container>
                         <Row>
@@ -45,6 +50,7 @@ class AccountPage extends Component {s
 							<th>Last Updated</th>
 							<th>Date Added</th>
 							<th>Current Status</th>
+							<th />
 						</tr>
 					</thead>
 					<tbody>
@@ -54,6 +60,17 @@ class AccountPage extends Component {s
 							<td>10/19/20 02:41:53 pm</td>
 							<td>05/20/20</td>
 							<td  style={{ color: 'green' }}>Good</td>
+							<td><Button outline color="danger" onClick={this.toggleDelete}>Delete Hive</Button></td>
+							<Modal isOpen={this.state.isOpen} toggle={this.toggleDelete} className={this.className}>
+								<ModalHeader toggle={this.toggleDelete}>Delete Hive</ModalHeader>
+								<ModalBody>
+									<p>Are you sure you want to delete this hive?</p>
+								</ModalBody>
+								<ModalFooter>
+									<Button color="danger" onClick={this.toggleDelete}>Delete</Button>{' '}
+									<Button color="secondary" onClick={this.toggleDelete}>Cancel</Button>
+								</ModalFooter>
+							</Modal>
 						</tr>
 						<tr>
 							<th scope="row">2</th>
@@ -61,6 +78,17 @@ class AccountPage extends Component {s
 							<td>10/18/20 10:10:02 pm</td>
 							<td>06/11/20</td>
 							<td  style={{ color: 'gold' }}>Warning</td>
+							<td><Button outline color="danger" onClick={this.toggleDelete}>Delete Hive</Button></td>
+							<Modal isOpen={this.state.isOpen} toggle={this.toggleDelete} className={this.className}>
+								<ModalHeader toggle={this.toggleDelete}>Delete Hive</ModalHeader>
+								<ModalBody>
+									<p>Are you sure you want to delete this hive?</p>
+								</ModalBody>
+								<ModalFooter>
+									<Button color="danger" onClick={this.toggleDelete}>Delete</Button>{' '}
+									<Button color="secondary" onClick={this.toggleDelete}>Cancel</Button>
+								</ModalFooter>
+							</Modal>
 						</tr>
 						<tr>
 							<th scope="row">3</th>
@@ -68,6 +96,17 @@ class AccountPage extends Component {s
 							<td>10/18/20 11:14:21 am</td>
 							<td>06/30/20</td>
 							<td  style={{ color: 'red' }}>Check Your Hive</td>
+							<td><Button outline color="danger" onClick={this.toggleDelete}>Delete Hive</Button></td>
+							<Modal isOpen={this.state.isOpen} toggle={this.toggleDelete} className={this.className}>
+								<ModalHeader toggle={this.toggleDelete}>Delete Hive</ModalHeader>
+								<ModalBody>
+									<p>Are you sure you want to delete this hive?</p>
+								</ModalBody>
+								<ModalFooter>
+									<Button color="danger" onClick={this.toggleDelete}>Delete</Button>{' '}
+									<Button color="secondary" onClick={this.toggleDelete}>Cancel</Button>
+								</ModalFooter>
+							</Modal>
 						</tr>
 					</tbody>
 				</Table>
