@@ -3,16 +3,7 @@ import HomePageNavBar from './HomePageNavBar';
 import HomePageHiveTile from './HomePageHiveTile';
 import NewHiveForm from './NewHiveForm'
 import Footer from './Footer'
-import {
-    Container,
-    Jumbotron,
-	CardDeck,
-	Button,
-	CardBody,
-	Modal, 
-	ModalHeader, 
-	ModalBody
-} from 'reactstrap';
+import {Container,Jumbotron,CardDeck,Button,CardBody,Modal,ModalHeader,ModalBody} from 'reactstrap';
 
 class HomePage extends Component {
     constructor(props) {
@@ -42,7 +33,7 @@ class HomePage extends Component {
                     <h1 className="display-3">Welcome to BeeMinder</h1>
 					<p className="lead">This is the homepage where you can see a all of your hives at a glance.</p>
 					<hr className="my-2" />
-					<p>To see more information on a specific hive, click on Go To Hive. To navigate around the webpage, use the Menu Bar in the top left corner.</p>
+					<p>To see more information on a specific hive, click on Go To Hive. To navigate around the webpage, use the Navigation Bar at the top of the page.</p>
                 </Jumbotron>
 				<Container>
 						<CardDeck>
@@ -64,9 +55,6 @@ class HomePage extends Component {
 							</CardBody>
 						</CardDeck>
 				</Container>
-				Submitted form values : <br/>
-				Hive name: {values && values.HiveName} <br/>
-				HiveID: {values && values.HiveID} <br/>
 				<br />
 				<br />
 				<Footer />

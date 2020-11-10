@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
 import AccountPageNavBar from './AccountPageNavBar';
 import Footer from './Footer'
-import {
-    Container,
-    Row,
-    Col,
-    Jumbotron,
-	Table,
-	Button,
-	Modal,
-	ModalHeader,
-	ModalBody,
-	ModalFooter
-} from 'reactstrap';
+import {Container,Row,Col,Jumbotron,Table,Button,Modal,ModalHeader,ModalBody,ModalFooter} from 'reactstrap';
 import {Link } from "react-router-dom";
 
 class AccountPage extends Component {s
