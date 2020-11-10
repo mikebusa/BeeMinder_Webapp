@@ -55,6 +55,12 @@ const HomePageNavBar = (props) => {
 								</ModalFooter>
 							</Modal>
 						</NavItem>
+						<NavItem>
+							<h5> </h5>
+						</NavItem>
+						<NavItem>
+							<Link to="/GQLExamples"><Button color="dark">GQL Example</Button></Link>
+						</NavItem>
 					</Nav>
 				</Collapse>
 			</Navbar>
