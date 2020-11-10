@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import HivePageNavBar from './HivePageNavBar';
 import Footer from './Footer'
 import {
-    Container,
-    Jumbotron,
-	Table,
-	Media
+    Container,Jumbotron,Table,Media
 } from 'reactstrap';
 
 class HivePage extends Component {s
