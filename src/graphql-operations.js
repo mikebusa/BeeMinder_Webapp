@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from '@apollo/client';
 
 export const FIND_HIVE = gql`
   query FindHive($query: HiveQueryInput!) {
@@ -8,6 +8,26 @@ export const FIND_HIVE = gql`
       created
       identifier
       name
+      reports {
+        _id
+      }
+      test
+    }
+  }
+`;
+
+export const FIND_HIVE2 = gql`
+  query FindHive {
+    hive (query: {name: "Hive1"}){
+      _id
+      _owner
+      created
+      identifier
+      name
+      reports {
+        _id
+      }
+      test
     }
   }
 `;
