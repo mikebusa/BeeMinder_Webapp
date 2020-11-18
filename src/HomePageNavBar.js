@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import {Link } from "react-router-dom";
 import NewHiveForm from './NewHiveForm'
+import { useRealmApp } from './components/RealmApp'
 
 const HomePageNavBar = (props) => {
 	const {
@@ -16,6 +17,8 @@ const HomePageNavBar = (props) => {
 
 	const [SignOutModal, setSignOutModal] = useState(false);
 	const toggleSignOutModal = () => setSignOutModal(!SignOutModal);
+
+	const app = useRealmApp();
 
 	return (
 		<div>
@@ -50,7 +53,10 @@ const HomePageNavBar = (props) => {
 									<p>Are you sure you want to sign out?</p>
 								</ModalBody>
 								<ModalFooter>
-									<Button color="primary" onClick={toggleSignOutModal}>Sign Out</Button>{' '}
+									<Button color="primary" onClick={() => {
+										toggleSignOutModal();
+										app.logOut();
+										}}>Sign Out</Button>{' '}
 									<Button color="secondary" onClick={toggleSignOutModal}>Cancel</Button>
 								</ModalFooter>
 							</Modal>
