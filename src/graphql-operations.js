@@ -11,23 +11,6 @@ export const FIND_HIVE = gql`
       reports {
         _id
       }
-      test
-    }
-  }
-`;
-
-export const FIND_HIVE2 = gql`
-  query FindHive {
-    hive (query: {name: "Hive1"}){
-      _id
-      _owner
-      created
-      identifier
-      name
-      reports {
-        _id
-      }
-      test
     }
   }
 `;

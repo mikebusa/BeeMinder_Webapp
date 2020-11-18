@@ -3,20 +3,15 @@ import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 // Apollo imports
 import { useQuery, useMutation } from "@apollo/client";
-import { CREATE_HIVE, FIND_HIVE2, UPDATE_HIVE } from "../graphql-operations";
+import { CREATE_HIVE, FIND_HIVE, UPDATE_HIVE } from "../graphql-operations";
 
 export default function GQLExamples() {
   // Logic for Hive query
   const [hiveSearchText, setHiveSearchText] = React.useState("Hive1");
-  const { loading: hiveLoading, data: hiveData } = useQuery(FIND_HIVE2, {
+  const { loading: hiveLoading, data: hiveData } = useQuery(FIND_HIVE, {
     variables: { query: { name: hiveSearchText } }
   });
   const hive = hiveData ? hiveData.hive : null;
-
-  if (hive) {
-    console.log(hive.reports);
-    console.log(hive.test);
-  }
     
   // Logic for update Hive mutation
   const [updateHive, { loading: updatingHive }] = useMutation(UPDATE_HIVE);
@@ -72,6 +67,16 @@ export default function GQLExamples() {
               <div>ID: {hive.identifier}</div>
               <div>Created: {hive.created}</div>
               <div>Owner: {hive._owner}</div>
+              {hive.reports.length > 0 && <div>
+                <h4>Reports</h4>
+                <ol>
+                  {hive.reports.map((report) => (
+                        <li key={report._id}>{report._id}</li>
+                      )
+                    )
+                  }
+                </ol>
+              </div>}
           </div>
         )}
       </div>
