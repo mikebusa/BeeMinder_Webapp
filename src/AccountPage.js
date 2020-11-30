@@ -1,80 +1,37 @@
-import React, { Component } from 'react';
-import HomePageNavBar from './HomePageNavBar';
+import React, { useState } from 'react';
+import AccountPageNavBar from './AccountPageNavBar';
 import Footer from './Footer'
-import {
-    Container,
-    Row,
-    Col,
-    Jumbotron,
-	Table,
-} from 'reactstrap';
-import {Link } from "react-router-dom";
+import {Container,Row,Col,Jumbotron,Button} from 'reactstrap';
+import RenderTableData from './RenderTableData';
+//Apollo imports
+import { useQuery } from "@apollo/client";
+import { FIND_HIVES } from "./graphql-operations";
 
-class AccountPage extends Component {s
-    constructor(props) {
-        super(props);
-
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            isOpen: false
-        };
-    }
-	toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    }
-	render() {
-        return (
-            <div>
-				<HomePageNavBar />
-				<Jumbotron color = "dark">
-                    <Container>
-                        <Row>
-                            <Col>
-                                <h1>My Hives</h1>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Jumbotron>
-				<Table hover>
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Hive Name</th>
-							<th>Last Updated</th>
-							<th>Date Added</th>
-							<th>Current Status</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td><Link to="/MyHive">Hive 1</Link></td>
-							<td>10/19/20 02:41:53 pm</td>
-							<td>05/20/20</td>
-							<td  style={{ color: 'green' }}>Good</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>Hive 2</td>
-							<td>10/18/20 10:10:02 pm</td>
-							<td>06/11/20</td>
-							<td  style={{ color: 'gold' }}>Warning</td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>Hive 3</td>
-							<td>10/18/20 11:14:21 am</td>
-							<td>06/30/20</td>
-							<td  style={{ color: 'red' }}>Check Your Hive</td>
-						</tr>
-					</tbody>
-				</Table>
-				<Footer />
-            </div>
-        );
-    }
+function AccountPage(props) {
+	const [hiveSearchText, setHiveSearchText] = useState("5fc541100dab7243052b2a23");
+	const { loading: hivesLoading, data: hivesData } = useQuery(FIND_HIVES, {
+		variables: { query: { _owner: hiveSearchText } }
+	});
+	
+	const hives = hivesData ? hivesData.hives : null;
+	
+	return (
+		<div>
+			<AccountPageNavBar />
+			<Jumbotron color = "dark">
+				<Container>
+					<Row>
+						<Col>
+							<h1>My Hives</h1>
+							<Button color="dark" onClick={() => setHiveSearchText("5f988ba84e48809d447001e4")}>Get Lastest Update</Button>
+						</Col>
+					</Row>
+				</Container>
+			</Jumbotron>
+			<RenderTableData hives = {hives} />
+			<Footer />
+        </div>
+	);
 }
 
 export default AccountPage;
