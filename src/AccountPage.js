@@ -1,108 +1,97 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import AccountPageNavBar from './AccountPageNavBar';
 import Footer from './Footer'
-import {Container,Row,Col,Jumbotron,Table,Button,Modal,ModalHeader,ModalBody,ModalFooter} from 'reactstrap';
+import DeleteHiveModal from './DeleteHiveModal';
+import GetUpdateTime from './getUpdateTime'
+import GetCreationDate from './GetCreationDate'
+import {Container,Row,Col,Jumbotron,Table,Button} from 'reactstrap';
 import {Link } from "react-router-dom";
+//Apollo imports
+import { useQuery } from "@apollo/client";
+import { FIND_HIVES } from "./graphql-operations";
 
-class AccountPage extends Component {s
-    constructor(props) {
-        super();
-
-        this.toggleDelete = this.toggleDelete.bind(this);
-        this.state = {
-            isOpen: false
-        };
-    }
-	toggleDelete() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    }
-	render() {
-        return (
-            <div>
-				<AccountPageNavBar />
-				<Jumbotron color = "dark">
-                    <Container>
-                        <Row>
-                            <Col>
-                                <h1>My Hives</h1>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Jumbotron>
-				<Table hover>
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Hive Name</th>
-							<th>Last Updated</th>
-							<th>Date Added</th>
-							<th>Current Status</th>
-							<th />
-						</tr>
-					</thead>
-					<tbody>
+function AccountPage(props) {
+	const [hiveSearchText, setHiveSearchText] = useState("5f988ba84e48809d447001e4");
+	const { loading: hivesLoading, data: hivesData } = useQuery(FIND_HIVES, {
+		variables: { query: { _owner: hiveSearchText } }
+	});
+	
+	const hives = hivesData ? hivesData.hives : null;
+	
+	return (
+		<div>
+			<AccountPageNavBar />
+			<Jumbotron color = "dark">
+				<Container>
+					<Row>
+						<Col>
+							<h1>My Hives</h1>
+							<Button color="dark" onClick={() => setHiveSearchText("5f988ba84e48809d447001e4")}>Get Lastest Update</Button>
+						</Col>
+					</Row>
+				</Container>
+			</Jumbotron>
+			<Table hover>
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Hive Name</th>
+						<th>Last Updated</th>
+						<th>Date Added</th>
+						<th>Current Status</th>
+						<th />
+					</tr>
+				</thead>
+				<tbody>
+					{hives && !hivesLoading && (
 						<tr>
 							<th scope="row">1</th>
-							<td><Link to="/MyHive">Hive 1</Link></td>
-							<td>10/19/20 02:41:53 pm</td>
-							<td>05/20/20</td>
+							<td><Link to={{
+									pathname: '/MyHive', 
+									hiveProps:{
+										hiveTitle:hives[0].name
+									}
+								}}>{hives[0].name}</Link>
+							</td>
+							<td><GetUpdateTime report = {hives[0].reports[0]}/></td>
+							<td><GetCreationDate hive = {hives[0]}/></td>
 							<td  style={{ color: 'green' }}>Good</td>
-							<td><Button outline color="danger" onClick={this.toggleDelete}>Delete Hive</Button></td>
-							<Modal isOpen={this.state.isOpen} toggle={this.toggleDelete} className={this.className}>
-								<ModalHeader toggle={this.toggleDelete}>Delete Hive</ModalHeader>
-								<ModalBody>
-									<p>Are you sure you want to delete this hive?</p>
-								</ModalBody>
-								<ModalFooter>
-									<Button color="danger" onClick={this.toggleDelete}>Delete</Button>{' '}
-									<Button color="secondary" onClick={this.toggleDelete}>Cancel</Button>
-								</ModalFooter>
-							</Modal>
+							<td><DeleteHiveModal /></td>
 						</tr>
+					)}
+					{hives && !hivesLoading && (
 						<tr>
 							<th scope="row">2</th>
-							<td>Hive 2</td>
-							<td>10/18/20 10:10:02 pm</td>
-							<td>06/11/20</td>
-							<td  style={{ color: 'gold' }}>Warning</td>
-							<td><Button outline color="danger" onClick={this.toggleDelete}>Delete Hive</Button></td>
-							<Modal isOpen={this.state.isOpen} toggle={this.toggleDelete} className={this.className}>
-								<ModalHeader toggle={this.toggleDelete}>Delete Hive</ModalHeader>
-								<ModalBody>
-									<p>Are you sure you want to delete this hive?</p>
-								</ModalBody>
-								<ModalFooter>
-									<Button color="danger" onClick={this.toggleDelete}>Delete</Button>{' '}
-									<Button color="secondary" onClick={this.toggleDelete}>Cancel</Button>
-								</ModalFooter>
-							</Modal>
+							<td><Link to={{
+									pathname: '/MyHive', 
+									hiveTitle:hives[1].name
+								}}>{hives[1].name}</Link>
+							</td>
+							<td><GetUpdateTime report = {hives[1].reports[0]}/></td>
+							<td><GetCreationDate hive = {hives[1]}/></td>
+							<td  style={{ color: 'green' }}>Good</td>
+							<td><DeleteHiveModal /></td>
 						</tr>
+					)}
+					{hives && !hivesLoading && (
 						<tr>
 							<th scope="row">3</th>
-							<td>Hive 3</td>
-							<td>10/18/20 11:14:21 am</td>
-							<td>06/30/20</td>
-							<td  style={{ color: 'red' }}>Check Your Hive</td>
-							<td><Button outline color="danger" onClick={this.toggleDelete}>Delete Hive</Button></td>
-							<Modal isOpen={this.state.isOpen} toggle={this.toggleDelete} className={this.className}>
-								<ModalHeader toggle={this.toggleDelete}>Delete Hive</ModalHeader>
-								<ModalBody>
-									<p>Are you sure you want to delete this hive?</p>
-								</ModalBody>
-								<ModalFooter>
-									<Button color="danger" onClick={this.toggleDelete}>Delete</Button>{' '}
-									<Button color="secondary" onClick={this.toggleDelete}>Cancel</Button>
-								</ModalFooter>
-							</Modal>
+							<td><Link to={{
+									pathname: '/MyHive', 
+									hiveTitle:hives[2].name
+								}}>{hives[2].name}</Link>
+							</td>
+							<td><GetUpdateTime report = {hives[2].reports[0]}/></td>
+							<td><GetCreationDate hive = {hives[2]}/></td>
+							<td  style={{ color: 'green' }}>Good</td>
+							<td><DeleteHiveModal /></td>
 						</tr>
-					</tbody>
-				</Table>
-				<Footer />
-            </div>
-        );
-    }
+					)}
+				</tbody>
+			</Table>
+			<Footer />
+		</div>
+	);
 }
 
 export default AccountPage;

@@ -13,7 +13,6 @@ class HomePageNavBar extends Component {
 		this.toggleSignOutModal = this.toggleSignOutModal.bind(this);
 	}
 
-
 	toggleNavbar() {
 		const currentState = this.state.Collapsed;
 		this.setState({ Collapsed: !currentState });
