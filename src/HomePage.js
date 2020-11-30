@@ -37,9 +37,9 @@ class HomePage extends Component {
                 </Jumbotron>
 				<Container>
 						<CardDeck>
-							<HomePageHiveTile hiveTitle={'Hive 1'} />
-							<HomePageHiveTile hiveTitle={'Hive 2'} />
-							<HomePageHiveTile hiveTitle={'Hive 3'} />
+							<HomePageHiveTile hiveTitle = "Hive 1"/>
+							<HomePageHiveTile hiveTitle = "Hive 2"/>
+							<HomePageHiveTile hiveTitle = "Hive 3"/>
 							<CardBody>
 								<br/>
 								<br/>
@@ -57,6 +57,8 @@ class HomePage extends Component {
 				</Container>
 				<br />
 				<br />
+				{values && values.HiveName}
+				{values && values.HiveID}
 				<Footer />
             </div>
         );

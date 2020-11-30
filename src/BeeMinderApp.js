@@ -11,7 +11,7 @@ export default function BeeMinderApp() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/MyAccount" component={AccountPage} />
-        <Route path="/MyHive" component={HivePage} />
+        <Route path="/MyHive" component={HivePage}/>
         <Route path="/GQLExamples" component={GQLExamples} />
       </Switch>
     </BrowserRouter>
