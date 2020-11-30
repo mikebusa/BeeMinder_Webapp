@@ -15,7 +15,6 @@ export const APP_ID = "beeminderdb-nyofv";
 const RequireLoggedInUser = ({ children }) => {
   // Only render children if there is a logged in user.
   const app = useRealmApp();
-  console.log("Current user:" + app.currentUser);
   return app.currentUser ? children : <LoginScreen />;
 };
 
