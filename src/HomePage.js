@@ -3,6 +3,7 @@ import HomePageNavBar from './HomePageNavBar';
 import HomePageHiveTile from './HomePageHiveTile';
 import NewHiveForm from './NewHiveForm'
 import Footer from './Footer'
+import AddHiveMutation from './AddHiveMutation'
 import {Container,Jumbotron,CardDeck,Button,CardBody,Modal,ModalHeader,ModalBody} from 'reactstrap';
 
 class HomePage extends Component {
@@ -59,6 +60,7 @@ class HomePage extends Component {
 				<br />
 				{values && values.HiveName}
 				{values && values.HiveID}
+				<AddHiveMutation />
 				<Footer />
             </div>
         );
