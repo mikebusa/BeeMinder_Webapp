@@ -1,37 +1,60 @@
-import React, { Component } from 'react';
-import {Button,Modal,ModalHeader,ModalBody,ModalFooter} from 'reactstrap';
+import React, { useState } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+//Apollo Imports
+import { useMutation } from "@apollo/client";
+import { DELETE_HIVE } from "./graphql-operations";
 
-class DeleteHiveModal extends Component {
-    constructor(props) {
-        super();
 
-        this.toggleDelete = this.toggleDelete.bind(this);
-        this.state = {
-            isOpen: false
-        };
-    }
-	toggleDelete() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    }
-	render() {
-        return (
-			<div>
-				<Button outline color="danger" onClick={this.toggleDelete}>Delete Hive</Button>
-				<Modal isOpen={this.state.isOpen} toggle={this.toggleDelete} className={this.className}>
-					<ModalHeader toggle={this.toggleDelete}>Delete Hive</ModalHeader>
-					<ModalBody>
-						<p>Are you sure you want to delete this hive?</p>
-					</ModalBody>
-					<ModalFooter>
-						<Button color="danger" onClick={this.toggleDelete}>Delete</Button>{' '}
-						<Button color="secondary" onClick={this.toggleDelete}>Cancel</Button>
-					</ModalFooter>
-				</Modal>	
-			</div>
-        );
-    }
+function DeleteHiveModal (props) {
+	const {
+		className,
+		hiveName
+	} = props;
+		
+	
+	//Delete Hive logic
+	const [deleteHive, { loading: deletingHive }] = useMutation(DELETE_HIVE);
+	const [deleteHiveNameText, setDeleteHiveNameText] = React.useState(hiveName);
+	const deleteOldHive = async () => {
+		if (!deleteHiveNameText) return;
+		await deleteHive({
+			variables: {
+				query: {
+					name: deleteHiveNameText
+				}
+			}
+		})
+		window.location.reload(false);
+	}
+	
+	//Modal Controls
+	const [modal, setModal] = useState(false);
+	
+	//Cancel Button
+	const toggle = () => setModal(!modal);
+	
+	//Steps to delete the hive
+	const executeDelete = () => {
+		setModal(!modal);
+		setDeleteHiveNameText(hiveName);
+		deleteOldHive();
+	}
+
+	return (
+		<div>
+			<Button outline color="danger" onClick={toggle}>Delete Hive</Button>
+			<Modal isOpen={modal} toggle={toggle} className={className}>
+				<ModalHeader toggle={toggle}>Delete Hive?</ModalHeader>
+				<ModalBody>
+					Are you sure you want to delete this hive?		
+				</ModalBody>
+				<ModalFooter>
+					<Button color="danger" onClick={() => executeDelete()}>Delete</Button>{' '}
+					<Button color="secondary" onClick={toggle}>Cancel</Button>
+				</ModalFooter>
+			</Modal>
+		</div>
+	);
 }
 
 export default DeleteHiveModal;

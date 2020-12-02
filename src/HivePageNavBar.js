@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import {Link } from "react-router-dom";
+import SignOutButton from './SignOutButton'
 
 class HivePageNavBar extends Component {
 	constructor() {
@@ -46,7 +47,7 @@ class HivePageNavBar extends Component {
 									<p>Are you sure you want to sign out?</p>
 								</ModalBody>
 								<ModalFooter>
-									<Button color="primary" onClick={this.toggleSignOutModal}>Sign Out</Button>{' '}
+									<SignOutButton />{' '}
 									<Button color="secondary" onClick={this.toggleSignOutModal}>Cancel</Button>
 								</ModalFooter>
 							</Modal>

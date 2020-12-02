@@ -1,24 +1,22 @@
 import * as React from "react"
-import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
 // Apollo imports
 import { useMutation } from "@apollo/client";
 import { CREATE_HIVE } from "./graphql-operations";
+import { Button } from "reactstrap";
 
-function AddHiveMutation() {
+function AddHiveMutation(props) {
 
-  // lgoic for create hive mutation
-  const [createHive, { loading: insertingHive }] = useMutation(CREATE_HIVE);
-  const [createHiveNameText, setCreateHiveNameText] = React.useState("");
+  // logic for create hive mutation
+  const [createHive] = useMutation(CREATE_HIVE);
   const createNewHive = async () => {
-    if (!createHiveNameText) return;
+    if (!props.hiveName) return;
     await createHive({
       variables: {
         data: {
-          _owner: "5f988ba84e48809d447001e4",
+          _owner: "5fc541100dab7243052b2a23",
           created: (new Date()).toISOString(),
-          identifier: "succesfulCreation",
-          name: createHiveNameText,
+          identifier: props.hiveID,
+          name: props.hiveName,
           reports: {
             link:[],
             create:[]
@@ -27,25 +25,16 @@ function AddHiveMutation() {
       }
     })
   }
-
-
+  
+  const submitForm = () => {
+	props.submitted();
+  }
+  
+  const valid = props.hiveName && props.hiveID ? true : false;
+  
   return (
     <div> 
-        <div>
-          <div> Here we can Create a new Hive </div>
-          {!insertingHive && (
-            <div>
-              <input
-                type="text"
-                value={createHiveNameText}
-                onChange={e => setCreateHiveNameText(e.target.value)}
-              />
-              <button onClick={() => createNewHive()}>
-                Create a new Hive
-              </button>
-            </div>
-          )}
-        </div>
+        <Button color = "primary" onClick={()=>{createNewHive(); submitForm()}} disabled={!valid}>Submit</Button>
     </div>)
 };
 

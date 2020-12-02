@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
 import TextInput from './TextInput';
 import validate from './validate';
+import AddHiveMutation from './AddHiveMutation';
 
 class NewHiveForm extends Component {
 	constructor() {
@@ -94,7 +94,7 @@ class NewHiveForm extends Component {
 					touched={this.state.formControls.HiveID.touched}
 					valid={this.state.formControls.HiveID.valid}
 				/>
-				<Button color = "primary" onClick={this.onSubmitForm} disabled={!this.state.formIsValid}>Submit</Button>
+				<AddHiveMutation hiveName = {this.state.formControls.HiveName.value} hiveID = {this.state.formControls.HiveID.value} submitted={this.onSubmitForm}/>
 			</div>
 		);
 	}
