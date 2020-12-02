@@ -3,6 +3,7 @@ import AccountPageNavBar from './AccountPageNavBar';
 import Footer from './Footer'
 import {Container,Row,Col,Jumbotron,Button} from 'reactstrap';
 import RenderTableData from './RenderTableData';
+
 //Apollo imports
 import { useQuery } from "@apollo/client";
 import { FIND_HIVES } from "./graphql-operations";

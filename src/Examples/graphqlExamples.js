@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 // Apollo imports
 import { useQuery, useMutation } from "@apollo/client";
-import { CREATE_HIVE, FIND_HIVES, UPDATE_HIVE } from "../graphql-operations";
+import { CREATE_HIVE, FIND_HIVE, UPDATE_HIVE } from "../graphql-operations";
 
 export default function GQLExamples() {
   // Logic for Hive query
   const [hiveSearchText, setHiveSearchText] = React.useState("5f988ba84e48809d447001e4");
-  const { loading: hiveLoading, data: hiveData } = useQuery(FIND_HIVES, {
+  const { loading: hiveLoading, data: hiveData } = useQuery(FIND_HIVE, {
     variables: { query: { _owner: hiveSearchText } }
   });
   const hive = hiveData ? hiveData.hive : null;
