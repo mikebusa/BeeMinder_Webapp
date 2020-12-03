@@ -23,7 +23,7 @@ function AccountPage(props) {
 					<Row>
 						<Col>
 							<h1>My Hives</h1>
-							<Button color="dark" onClick={() => setHiveSearchText("5f988ba84e48809d447001e4")}>Get Lastest Update</Button>
+							<Button color="dark" onClick={() => setHiveSearchText("5fc541100dab7243052b2a23")}>Get Lastest Update</Button>
 						</Col>
 					</Row>
 				</Container>

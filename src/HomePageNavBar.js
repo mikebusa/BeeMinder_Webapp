@@ -36,6 +36,7 @@ class HomePageNavBar extends Component {
 								<Link to="/MyAccount"><Button color="link" outline="false">My Hives</Button></Link>
 							</NavItem>
 						</Nav>
+						<NavItem>
 							<Button color="link" outline="false" onClick={this.toggleSignOutModal}>Sign Out</Button>
 							<Modal isOpen={this.state.SignOutModal} toggle={this.toggleSignOutModal} className={this.className}>
 								<ModalHeader toggle={this.toggleSignOutModal}>Sign Out</ModalHeader>
