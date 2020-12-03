@@ -41,7 +41,6 @@ function HivePage (props) {
 	const humidity_status_color = (humidity >35 && humidity < 55) ? "green" :
 							      (humidity >25 && humidity < 65) ? "gold" : "red";
 
->>>>>>> 5593592... Completed Design/Navigation
 	const weight_status = (weight >50 && weight < 80) ? "Good" :
 						  (weight >40 && weight < 130) ? "Warning" : "Critical";
 	const weight_status_color = (weight >50 && weight < 80) ? "green" :

@@ -24,17 +24,7 @@ class HomePageNavBar extends Component {
 		this.setState({ SignOutModal: !currentState });
 	}
 
-	toggleNavbar() {
-		const currentState = this.state.Collapsed;
-		this.setState({ Collapsed: !currentState });
-	}
-	
-	toggleSignOutModal() {
-		const currentState = this.state.SignOutModal;
-		this.setState({ SignOutModal: !currentState });
-	}
-	
-	render() {		
+	render() {
 		return (
 			<div>
 				<Navbar color="warning" light expand="md">
