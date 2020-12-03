@@ -7,12 +7,11 @@ import { CREATE_HIVE, FIND_HIVE, UPDATE_HIVE } from "../graphql-operations";
 
 export default function GQLExamples() {
   // Logic for Hive query
-  const [hiveSearchText, setHiveSearchText] = React.useState("Hive1");
+  const [hiveSearchText, setHiveSearchText] = React.useState("5f988ba84e48809d447001e4");
   const { loading: hiveLoading, data: hiveData } = useQuery(FIND_HIVE, {
-    variables: { query: { name: hiveSearchText } }
+    variables: { query: { _owner: hiveSearchText } }
   });
   const hive = hiveData ? hiveData.hive : null;
-    
   // Logic for update Hive mutation
   const [updateHive, { loading: updatingHive }] = useMutation(UPDATE_HIVE);
   const [newHiveNameText, setNewHiveNameText] = React.useState("Silly New Name");
