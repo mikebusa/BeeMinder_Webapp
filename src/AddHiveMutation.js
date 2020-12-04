@@ -3,8 +3,11 @@ import * as React from "react"
 import { useMutation } from "@apollo/client";
 import { CREATE_HIVE } from "./graphql-operations";
 import { Button } from "reactstrap";
+import { useRealmApp } from "./components/RealmApp";
 
 function AddHiveMutation(props) {
+	const app = useRealmApp();
+	const userID = app.currentUser._id
 
   // logic for create hive mutation
   const [createHive] = useMutation(CREATE_HIVE);
@@ -13,7 +16,7 @@ function AddHiveMutation(props) {
     await createHive({
       variables: {
         data: {
-          _owner: "5fc541100dab7243052b2a23",
+          _owner: userID,
           created: (new Date()).toISOString(),
           identifier: props.hiveID,
           name: props.hiveName,
@@ -24,6 +27,7 @@ function AddHiveMutation(props) {
         }
       }
     })
+	window.location.reload(false);
   }
   
   const submitForm = () => {

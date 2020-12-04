@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
 import { Card, CardText, CardBody, CardHeader,CardTitle, CardFooter, Button} from 'reactstrap';
 import {Link } from "react-router-dom";
-//Apollo imports
-import { useQuery } from "@apollo/client";
-import { FIND_HIVE } from "./graphql-operations";
 
 function HomePageHiveTile(props) {
-	const [hiveSearchText, setHiveSearchText] = useState(props.hiveTitle);
-	const { data: hiveData } = useQuery(FIND_HIVE, {
-		variables: { query: { name: hiveSearchText } }
-	});
-	const hive = hiveData ? hiveData.hive : null;
-	const hiveID = hive ? hive.identifier : "Needs Update";
-	const hiveName = hive ? hive.name : null;
+	
+	const hiveID = props.hiveID;
+	const hiveName = props.hiveName;
 
-	const report = hive ? hive.reports[0] : null;
+	const report = props.report;
 	
 	const temperature = report ? report.sensor_data.temp : "0";
 	const humidity = report ? report.sensor_data.humidity : "0";
@@ -29,6 +22,7 @@ function HomePageHiveTile(props) {
 	const AMPM = Number(lastUpdated.substr(11, 2)) > 12 ? "PM" : "AM";
 	const minute = lastUpdated.substr(14, 2);
 	const second = lastUpdated.substr(17, 2);
+
 	
 	return (
 		<div>
@@ -37,7 +31,7 @@ function HomePageHiveTile(props) {
 					<h2>
 						<CardTitle>{hiveName}</CardTitle>
 					</h2>
-					<CardText>Last Hive Update: {month}/{day}/{year} at {hour}:{minute}:{second} {AMPM}</CardText>
+					<CardText>Last Update: {month}/{day}/{year} at {hour}:{minute}:{second} {AMPM}</CardText>
 				</CardHeader>
 				<CardBody>
 					<CardText>Hive ID: {hiveID}</CardText>
@@ -46,7 +40,7 @@ function HomePageHiveTile(props) {
 					<CardText>Weight: {weight} lbs</CardText>
 				</CardBody>
 				<CardFooter>
-					<Button color="primary" onClick={() => setHiveSearchText(props.hiveTitle)}>Get Hive Update</Button>  <Link to={{pathname: '/MyHive', hiveTitle:hiveName}}><Button color="success">Go To Hive</Button></Link>																								
+					<Button color="primary" onClick={() => window.location.reload(false)}>Get Hive Update</Button>  <Link to={{pathname: '/MyHive', hiveTitle:hiveName}}><Button color="success">Go To Hive</Button></Link>																								
 				</CardFooter>
 			</Card>
 		</div>

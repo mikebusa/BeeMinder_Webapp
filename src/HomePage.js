@@ -3,6 +3,7 @@ import HomePageNavBar from './HomePageNavBar';
 import HomePageHiveTile from './HomePageHiveTile';
 import NewHiveForm from './NewHiveForm'
 import Footer from './Footer'
+import RenderTileData from './RenderTileData';
 import {Container,Jumbotron,CardDeck,Button,CardBody,Modal,ModalHeader,ModalBody} from 'reactstrap';
 
 class HomePage extends Component {
@@ -37,9 +38,7 @@ class HomePage extends Component {
                 </Jumbotron>
 				<Container>
 						<CardDeck>
-							<HomePageHiveTile hiveTitle = "Hive 1"/>
-							<HomePageHiveTile hiveTitle = "Hive 2"/>
-							<HomePageHiveTile hiveTitle = "Hive 3"/>
+							<RenderTileData />
 							<CardBody>
 								<br/>
 								<br/>

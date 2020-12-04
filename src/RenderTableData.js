@@ -4,11 +4,17 @@ import DeleteHiveModal from './DeleteHiveModal';
 import GetCreationDate from './GetCreationDate';
 import GetUpdateTime from './getUpdateTime';
 import {Link } from "react-router-dom";
+import { useRealmApp } from "./components/RealmApp";
+//Apollo Imports
 import { useQuery } from "@apollo/client";
 import { FIND_HIVES } from "./graphql-operations";
 
+
 function RenderTableData (props) {
-    const [hiveSearchText, setHiveSearchText] = useState("5fc541100dab7243052b2a23");
+	const app = useRealmApp();
+	const userID = app.currentUser._id
+	
+    const [hiveSearchText, setHiveSearchText] = useState(userID);
 	const { loading: hivesLoading, data: hivesData } = useQuery(FIND_HIVES, {
 		variables: { query: { _owner: hiveSearchText } }
 	});
