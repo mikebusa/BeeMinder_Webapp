@@ -14,6 +14,8 @@ export default function LoginScreen() {
 	const app = useRealmApp();
 	const eye = <FontAwesomeIcon icon={faEye} />;
 	
+	const [pressed, setPressed] = React.useState(false);
+	
 	// Toggle between logging users in and registering new users
 	const [mode, setMode] = React.useState("login");
 	const toggleMode = () => {
@@ -84,7 +86,7 @@ export default function LoginScreen() {
 						<Col>
 							<br/>
 							<br/>
-							{isLoggingIn ? (
+							{isLoggingIn & error.password == null ? (
 								<Spinner color="primary" />
 							) : (
 								<Card>
@@ -122,7 +124,12 @@ export default function LoginScreen() {
 												}
 												errorMessage={error.password}
 											/>
-											<p style={{"font-size": 15}}><i position="absolute" onClick={togglePasswordVisiblity}>{eye}</i>{' '}← Show Password</p>
+											<p style={{"fontSize": 15}}><i position="absolute" onClick={togglePasswordVisiblity}>{eye}</i>{' '}← Show Password</p>
+											{error != null && pressed == true ? (
+												<p style = {{"color" : "red"}}>Incorrect Email or Password</p>
+											) : (
+												<p style = {{"color" : "white", "fontSize":1}}>!</p>	
+											)}
 										</div>
 										<Container>
 											<Row>
@@ -130,11 +137,11 @@ export default function LoginScreen() {
 												<Col/>
 												<Col>
 													{mode === "login" ? (
-														<Button color="warning" onClick={() => handleLogin()}>
+														<Button color="warning" onClick={() => {handleLogin(); setPressed(true)}}>
 															Log In
 														</Button>
 													) : (
-														<Button color="warning" onClick={() => handleRegistrationAndLogin()}>
+														<Button color="warning" onClick={() => {handleRegistrationAndLogin(); setPressed(true);}}>
 															Register
 														</Button>
 													)}
@@ -188,6 +195,7 @@ function handleAuthenticationError(err, setError) {
 			}));
 			break;
 		default:
+			setError((err) => null);
 			break;
 	}
 }

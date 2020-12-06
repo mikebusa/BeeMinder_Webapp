@@ -26,7 +26,7 @@ function HomePageHiveTile(props) {
 	
 	return (
 		<div>
-			<Card>
+			<Card outline color="secondary">
 				<CardHeader>
 					<h2>
 						<CardTitle>{hiveName}</CardTitle>
@@ -43,6 +43,7 @@ function HomePageHiveTile(props) {
 					<Button color="primary" onClick={() => window.location.reload(false)}>Get Hive Update</Button>  <Link to={{pathname: '/MyHive', hiveTitle:hiveName}}><Button color="success">Go To Hive</Button></Link>																								
 				</CardFooter>
 			</Card>
+			<br/>
 		</div>
 	);
 }

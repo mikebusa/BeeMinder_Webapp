@@ -37,22 +37,7 @@ class HomePage extends Component {
 					<p>To see more information on a specific hive, click on Go To Hive. To navigate around the webpage, use the Navigation Bar at the top of the page.</p>
                 </Jumbotron>
 				<Container>
-						<CardDeck>
-							<RenderTileData />
-							<CardBody>
-								<br/>
-								<br/>
-								<br/>
-								<br/>
-								<Button color = "success" onClick={this.toggleNewHiveModal}>+ New Hive</Button>
-								<Modal isOpen={this.state.NewHiveModal} toggle={this.toggleNewHiveModal} className={this.className}>
-									<ModalHeader toggle={this.toggleNewHiveModal} close={<button className="close" onClick={this.toggleNewHiveModal}>&times;</button>}>Add a New Hive</ModalHeader>
-									<ModalBody>
-										<NewHiveForm onFormSubmit={this.submitForm}/>
-									</ModalBody>
-								</Modal>
-							</CardBody>
-						</CardDeck>
+					<RenderTileData />
 				</Container>
 				<br />
 				<br />
