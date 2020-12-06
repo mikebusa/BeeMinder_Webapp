@@ -5,6 +5,7 @@ import GetCreationDate from './GetCreationDate';
 import GetUpdateTime from './getUpdateTime';
 import {Link } from "react-router-dom";
 import { useRealmApp } from "./components/RealmApp";
+import EditHiveModal from "./EditHiveModal";
 //Apollo Imports
 import { useQuery } from "@apollo/client";
 import { FIND_HIVES } from "./graphql-operations";
@@ -22,7 +23,7 @@ function RenderTableData (props) {
 	const hives = hivesData ? hivesData.hives : null;
 
     const renderHeader = () => {
-        let headerElement = ['Hive Name', 'Last Updated', 'Date Added', 'Status', '']
+        let headerElement = ['Hive Name', 'Last Updated', 'Date Added', 'Status', '', '']
 
         return headerElement.map((key, index) => {
             return <th key={index}>{key.toUpperCase()}</th>
@@ -41,6 +42,7 @@ function RenderTableData (props) {
 					<td><GetUpdateTime report = {reports[0]}/></td>
 					<td><GetCreationDate date = {created}/></td>
 					<td  style={{ color: 'green' }}>Good</td>
+					<td><EditHiveModal hiveName = {name}/></td>
 					<td><DeleteHiveModal hiveName = {name}/></td>
                 </tr>
             )
