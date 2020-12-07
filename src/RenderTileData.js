@@ -11,7 +11,6 @@ import { FIND_HIVES } from "./graphql-operations";
 function RenderTileData (props) {
 	const app = useRealmApp();
 	const userID = app.currentUser._id
-	console.log(userID);
     const [hiveSearchText, setHiveSearchText] = useState(userID);
 	const { loading: hivesLoading, data: hivesData } = useQuery(FIND_HIVES, {
 		variables: { query: { _owner: hiveSearchText } }

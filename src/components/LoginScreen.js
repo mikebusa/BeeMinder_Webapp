@@ -82,8 +82,8 @@ export default function LoginScreen() {
 				<LoginPageNavBar />
 				<Container>
 					<Row>
-						<Col/>
-						<Col>
+						<Col xs="4"/>
+						<Col xs="4">
 							<br/>
 							<br/>
 							{isLoggingIn & error.password == null ? (
@@ -160,7 +160,7 @@ export default function LoginScreen() {
 								</Card>
 							)}
 						</Col>
-						<Col/>
+						<Col xs="3"/>
 					</Row>
 					<br/>
 					<br/>
