@@ -82,7 +82,7 @@ export default function LoginScreen() {
 				<LoginPageNavBar />
 				<Container>
 					<Row>
-						<Col xs="4"/>
+						<Col xs="auto"/>
 						<Col xs="4">
 							<br/>
 							<br/>
@@ -92,7 +92,7 @@ export default function LoginScreen() {
 								<Card>
 									<CardBody>  
 										<div>
-											<h1>{mode === "login" ? "Logg In" : "Register Account"}</h1>
+											<h1>{mode === "login" ? "Log In" : "Register Account"}</h1>
 										</div>
 										<div>
 											Email:
@@ -160,7 +160,7 @@ export default function LoginScreen() {
 								</Card>
 							)}
 						</Col>
-						<Col xs="3"/>
+						<Col xs="auto"/>
 					</Row>
 					<br/>
 					<br/>
