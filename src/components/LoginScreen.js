@@ -83,7 +83,7 @@ export default function LoginScreen() {
 				<Container>
 					<Row>
 						<Col xs="auto"/>
-						<Col xs="4">
+						<Col xs="10">
 							<br/>
 							<br/>
 							{isLoggingIn & error.password == null ? (
