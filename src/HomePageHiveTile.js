@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardText, CardBody, CardHeader,CardTitle, CardFooter, Button} from 'reactstrap';
+import { Alert, Card, CardText, CardBody, CardHeader,CardTitle, CardFooter, Button} from 'reactstrap';
 import {Link } from "react-router-dom";
 
 function HomePageHiveTile(props) {
@@ -26,6 +26,9 @@ function HomePageHiveTile(props) {
 	
 	return (
 		<div>
+			{report && (temperature > 96 || temperature < 94 || humidity > 65 || humidity < 45 || weight > 70) ? (
+				<Alert color="danger">THIS HIVE REQUIRES ATTENTION!</Alert>
+			):(<p/>)}
 			<Card outline color="secondary">
 				<CardHeader>
 					<h2>
