@@ -42,7 +42,7 @@ function DeleteHiveModal (props) {
 
 	return (
 		<div>
-			<Button outline color="danger" onClick={toggle}>Delete Hive</Button>
+			<Button color="danger" onClick={toggle}>Delete Hive</Button>
 			<Modal isOpen={modal} toggle={toggle} className={className}>
 				<ModalHeader toggle={toggle}>Delete Hive?</ModalHeader>
 				<ModalBody>

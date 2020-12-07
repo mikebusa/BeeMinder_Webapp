@@ -31,14 +31,25 @@ function HomePageHiveTile(props) {
 					<h2>
 						<CardTitle>{hiveName}</CardTitle>
 					</h2>
-					<CardText>Last Update: {month}/{day}/{year} at {hour}:{minute}:{second} {AMPM}</CardText>
+					{lastUpdated === "0000-00-00T00:00:00Z" ? (
+						<CardText/>					
+					) : (
+						<CardText>Last Update: {month}/{day}/{year} at {hour}:{minute}:{second} {AMPM}</CardText>
+					)}
 				</CardHeader>
-				<CardBody>
-					<CardText>Hive ID: {hiveID}</CardText>
-					<CardText>Temperature: {temperature}°F</CardText>
-					<CardText>Humidity: {humidity}%</CardText>
-					<CardText>Weight: {weight} lbs</CardText>
-				</CardBody>
+				
+				{report ? (
+					<CardBody>
+						<CardText>Hive ID: {hiveID}</CardText>
+						<CardText>Temperature: {temperature}°F</CardText>
+						<CardText>Humidity: {humidity}%</CardText>
+						<CardText>Weight: {weight} lbs</CardText>
+					</CardBody>
+				) : (
+					<CardBody>
+						<CardText>No data to report, update page to see most recent data</CardText>
+					</CardBody>
+				)}	
 				<CardFooter>
 					<Button color="primary" onClick={() => window.location.reload(false)}>Get Hive Update</Button>  <Link to={{pathname: '/MyHive', hiveTitle:hiveName}}><Button color="success">Go To Hive</Button></Link>																								
 				</CardFooter>

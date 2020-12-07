@@ -10,7 +10,7 @@ function EditHiveModal (props) {
 
 	return (
 		<div>
-			<Button outline color="warning" onClick={toggle}>Edit Hive</Button>{' '}
+			<Button color="warning" onClick={toggle}>Edit Hive</Button>
 			<Modal isOpen={modal} toggle={toggle} className={props.className}>
 				<ModalHeader toggle={toggle} close={<button className="close" onClick={toggle}>&times;</button>}>Edit Hive Name</ModalHeader>
 				<ModalBody>

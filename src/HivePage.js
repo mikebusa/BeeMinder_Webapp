@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import HivePageNavBar from './HivePageNavBar';
 import Footer from './Footer'
 import { Container,Jumbotron,Table, Button} from 'reactstrap';
+import EditHiveModal from './EditHiveModal';
+import DeleteHiveModal from './DeleteHiveModal';
 //Apollo imports
 import { useQuery } from "@apollo/client";
 import { FIND_HIVE } from "./graphql-operations";
@@ -31,20 +33,20 @@ function HivePage (props) {
 	const minute = lastUpdated.substr(14, 2);
 	const second = lastUpdated.substr(17, 2);
 	
-	const temp_status = (temperature >25 && temperature < 55) ? "Good" :
-						(temperature >5 && temperature < 76) ? "Warning" : "Critical";
-	const temp_status_color = (temperature >25 && temperature < 55) ? "green" :
-							  (temperature >5 && temperature < 76) ? "gold" : "red";
+	const temp_status = (temperature >= 94  && temperature <= 96) ? "Good" :
+						(temperature == 0) ? "Critical" : "Warning";
+	const temp_status_color = (temperature >= 94 && temperature <= 96) ? "green" :
+							  (temperature == 0) ? "red" : "gold";
 							  
-	const humidity_status = (humidity >35 && humidity < 55) ? "Good" :
-						    (humidity >25 && humidity < 65) ? "Warning" : "Critical";
-	const humidity_status_color = (humidity >35 && humidity < 55) ? "green" :
-							      (humidity >25 && humidity < 65) ? "gold" : "red";
+	const humidity_status = (humidity >= 45 && humidity <= 65) ? "Good" :
+						    (humidity == 0) ? "Critical" : "Warning";
+	const humidity_status_color = (humidity >= 45 && humidity <= 65) ? "green" :
+							      (humidity == 0) ? "red" : "gold";
 
-	const weight_status = (weight >50 && weight < 80) ? "Good" :
-						  (weight >40 && weight < 130) ? "Warning" : "Critical";
+	const weight_status = (weight < 70) ? "Good" :
+						  (weight == 0) ? "Critical" : "Ready to Harvest!";
 	const weight_status_color = (weight >50 && weight < 80) ? "green" :
-							    (weight >40 && weight < 130) ? "gold" : "red";	
+							    (weight >40 && weight < 130) ? "blue" : "red";	
 
 	const refresh = () => {
 		setHiveSearchText(props.location.hiveTitle);
@@ -59,7 +61,7 @@ function HivePage (props) {
 				<p>Hive ID: {hiveID}</p>
 				<hr className="my-2" />
 				<h5>Last Updated: {month}/{day}/{year} at {hour}:{minute}:{second} {AMPM}  </h5>
-				<Button color="dark" onClick={() => refresh()}>Get Lastest Update</Button>
+				<Button color="dark" onClick={() => refresh()}>Get Lastest Update</Button>			
 			</Jumbotron>
 			<Container>
 				<h3>Audio Information:</h3>
@@ -75,12 +77,12 @@ function HivePage (props) {
 					</thead>
 					<tbody>
 						<tr>
-							<th scope="row">Inside Hive</th>
+							<td scope="row">Inside Hive</td>
 							<td>{temperature}°F</td>
 							<td style = {{color: temp_status_color}}>{temp_status}</td>
 						</tr>
 						<tr>
-							<th scope="row">Outside Hive</th>
+							<td scope="row">Outside Hive</td>
 							<td>{temperature}°F</td>
 							<td style = {{color: temp_status_color}}>{temp_status}</td>
 						</tr>
@@ -98,12 +100,12 @@ function HivePage (props) {
 					</thead>
 					<tbody>
 						<tr>
-							<th scope="row">Inside Hive</th>
+							<td scope="row">Inside Hive</td>
 							<td>{humidity}%</td>
 							<td style = {{color: humidity_status_color}}>{humidity_status}</td>
 						</tr>
 						<tr>
-							<th scope="row">Outside Hive</th>
+							<td scope="row">Outside Hive</td>
 							<td>{humidity}%</td>
 							<td style = {{color: humidity_status_color}}>{humidity_status}</td>
 						</tr>
@@ -114,29 +116,14 @@ function HivePage (props) {
 				<Table hover>
 					<thead>
 						<tr>
-							<th>Location</th>
+							<th>Time</th>
 							<th>Current Reading</th>
 							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<th scope="row">Top Left</th>
-							<td>{weight} lbs</td>
-							<td style = {{color: weight_status_color}}>{weight_status}</td>
-						</tr>
-						<tr>
-							<th scope="row">Top Right</th>
-							<td>{weight} lbs</td>
-							<td style = {{color: weight_status_color}}>{weight_status}</td>
-						</tr>
-						<tr>
-							<th scope="row">Bottom Left</th>
-							<td>{weight} lbs</td>
-							<td style = {{color: weight_status_color}}>{weight_status}</td>
-						</tr>
-						<tr>
-							<th scope="row">Bottom Right</th>
+							<td scope="row">{hour}:{minute}:{second} {AMPM}</td>
 							<td>{weight} lbs</td>
 							<td style = {{color: weight_status_color}}>{weight_status}</td>
 						</tr>
