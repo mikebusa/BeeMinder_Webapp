@@ -29,7 +29,7 @@ class HomePage extends Component {
 				<HomePageNavBar />
                 <Jumbotron>
                     <h1 className="display-3">Welcome to BeeMinder</h1>
-					<p className="lead">This is the homepage where you can see a all of your hives at a glance.</p>
+					<p className="lead">This is the homepage where you can see all of your hives at a glance.</p>
 					<hr className="my-2" />
 					<p>To see more information on a specific hive, click on Go To Hive. To navigate around the webpage, use the Navigation Bar at the top of the page.</p>
                 </Jumbotron>
