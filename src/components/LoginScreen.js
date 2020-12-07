@@ -125,7 +125,7 @@ export default function LoginScreen() {
 												errorMessage={error.password}
 											/>
 											<p style={{"fontSize": 15}}><i position="absolute" onClick={togglePasswordVisiblity}>{eye}</i>{' '}← Show Password</p>
-											{error != null && pressed == true ? (
+											{error != null && pressed === true ? (
 												<p style = {{"color" : "red"}}>Incorrect Email or Password</p>
 											) : (
 												<p style = {{"color" : "white", "fontSize":1}}>!</p>	

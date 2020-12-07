@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import HomePageNavBar from './HomePageNavBar';
-import HomePageHiveTile from './HomePageHiveTile';
-import NewHiveForm from './NewHiveForm'
 import Footer from './Footer'
 import RenderTileData from './RenderTileData';
-import {Container,Jumbotron,CardDeck,Button,CardBody,Modal,ModalHeader,ModalBody} from 'reactstrap';
+import {Container,Jumbotron} from 'reactstrap';
 
 class HomePage extends Component {
     constructor(props) {
@@ -26,7 +24,6 @@ class HomePage extends Component {
 	}
 	
     render() {
-		const { values } = this.state;
         return (
             <div>
 				<HomePageNavBar />

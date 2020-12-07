@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 // Apollo imports
 import { useMutation } from "@apollo/client";
 import { UPDATE_HIVE } from "./graphql-operations";
@@ -18,15 +18,8 @@ function EditHiveMutation(props) {
 		});
 		window.location.reload(false);
 	};
-	
-	//Modal Controls
-	const [modal, setModal] = useState(false);
-	const toggle = () => setModal(!modal);
   
   const valid = props.newHiveName && props.oldHiveName ? true : false;
-  console.log(valid)
-  console.log(props.newHiveName)
-  console.log(props.oldHiveName)
   
   const submitForm = () => {
 	props.submitted();

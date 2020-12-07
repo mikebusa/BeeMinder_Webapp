@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TextInput from './TextInput';
-import validate from './validate';
 import EditHiveMutation from './EditHiveMutation';
 
 class EditHiveForm extends Component {

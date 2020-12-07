@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-//Apollo Imports
-import { useQuery, useMutation } from "@apollo/client";
-import { UPDATE_HIVE } from "./graphql-operations";
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import EditHiveForm from "./EditHiveForm";
 
 

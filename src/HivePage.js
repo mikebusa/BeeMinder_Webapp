@@ -44,7 +44,12 @@ function HivePage (props) {
 	const weight_status = (weight >50 && weight < 80) ? "Good" :
 						  (weight >40 && weight < 130) ? "Warning" : "Critical";
 	const weight_status_color = (weight >50 && weight < 80) ? "green" :
-							    (weight >40 && weight < 130) ? "gold" : "red";							
+							    (weight >40 && weight < 130) ? "gold" : "red";	
+
+	const refresh = () => {
+		setHiveSearchText(props.location.hiveTitle);
+		window.location.reload(false);
+	}
 	
 	return (
 		<div>
@@ -54,7 +59,7 @@ function HivePage (props) {
 				<p>Hive ID: {hiveID}</p>
 				<hr className="my-2" />
 				<h5>Last Updated: {month}/{day}/{year} at {hour}:{minute}:{second} {AMPM}  </h5>
-				<Button color="dark" onClick={() => setHiveSearchText(props.location.hiveTitle)}>Get Lastest Update</Button>
+				<Button color="dark" onClick={() => refresh()}>Get Lastest Update</Button>
 			</Jumbotron>
 			<Container>
 				<h3>Audio Information:</h3>
