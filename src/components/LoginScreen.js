@@ -92,7 +92,7 @@ export default function LoginScreen() {
 								<Card>
 									<CardBody>  
 										<div>
-											<h1>{mode === "login" ? "Log In" : "Register Account"}</h1>
+											<h1>{mode === "login" ? "Logg In" : "Register Account"}</h1>
 										</div>
 										<div>
 											Email:
