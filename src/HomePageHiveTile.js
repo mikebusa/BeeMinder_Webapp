@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Card, CardText, CardBody, CardHeader,CardTitle, CardFooter, Button} from 'reactstrap';
+import { Card, CardText, CardBody, CardHeader,CardTitle, CardFooter, Button} from 'reactstrap';
 import {Link } from "react-router-dom";
 
 function HomePageHiveTile(props) {
@@ -32,7 +32,7 @@ function HomePageHiveTile(props) {
 				{report && (temperature > 96 || temperature < 94 || humidity > 65 || humidity < 45 || (bee_flags && (bee_flags.queen_present === false || bee_flags.multiple_queen || bee_flags.possible_mites || bee_flags.three_day_in_range === false || bee_flags.six_day_in_range === false || bee_flags.nine_day_in_range === false))) ? (
 					<CardHeader style={{ backgroundColor: '#FF9C9D' }}>
 						<h2>
-							<CardTitle>{hiveName} - Requires Attention!</CardTitle>
+							<CardTitle>{hiveName} ⚠️</CardTitle>
 						</h2>
 						{lastUpdated === "0000-00-00T00:00:00Z" ? (
 							<CardText/>					
@@ -43,7 +43,7 @@ function HomePageHiveTile(props) {
 				) : weight > 70 ? (
 					<CardHeader style={{ backgroundColor: '#99DCFE' }}>
 						<h2>
-							<CardTitle>{hiveName} - Harvest Ready!</CardTitle>
+							<CardTitle>{hiveName}⚠️</CardTitle>
 						</h2>
 						{lastUpdated === "0000-00-00T00:00:00Z" ? (
 							<CardText/>					
@@ -73,7 +73,8 @@ function HomePageHiveTile(props) {
 					</CardBody>
 				) : (
 					<CardBody>
-						<CardText>No data to report, update page to see most recent data</CardText>
+						<CardText>No data to report.</CardText>
+						<CardText>Update page to see most recent data.</CardText>
 					</CardBody>
 				)}	
 				<CardFooter>
