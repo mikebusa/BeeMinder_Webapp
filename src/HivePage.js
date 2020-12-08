@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import HivePageNavBar from './HivePageNavBar';
 import Footer from './Footer'
-import { Container,Jumbotron,Table, Button} from 'reactstrap';
+import { Container,Jumbotron,Table} from 'reactstrap';
 import GraphModal from './GraphModal';
 //Apollo imports
 import { useQuery } from "@apollo/client";
@@ -53,10 +53,6 @@ function HivePage (props) {
 	const weight_status_color = (weight >50 && weight < 80) ? "green" :
 							    (weight >40 && weight < 130) ? "blue" : "red";	
 
-	const refresh = () => {
-		setHiveSearchText(props.location.hiveTitle);
-	}
-	
 	return (
 		<div>
 			<HivePageNavBar />
@@ -118,19 +114,14 @@ function HivePage (props) {
 				<Table hover>
 					<thead>
 						<tr>
-							<th>Location</th>
+							<th>Time</th>
 							<th>Current Reading</th>
 							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>Inside Hive</td>
-							<td>{temperature}°F</td>
-							<td style = {{color: temp_status_color}}>{temp_status}</td>
-						</tr>
-						<tr>
-							<td>Outside Hive</td>
+							<td>{hour}:{minute}:{second} {AMPM}</td>
 							<td>{temperature}°F</td>
 							<td style = {{color: temp_status_color}}>{temp_status}</td>
 						</tr>
@@ -141,19 +132,14 @@ function HivePage (props) {
 				<Table hover>
 					<thead>
 						<tr>
-							<th>Location</th>
+							<th>Time</th>
 							<th>Current Reading</th>
 							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>Inside Hive</td>
-							<td>{humidity}%</td>
-							<td style = {{color: humidity_status_color}}>{humidity_status}</td>
-						</tr>
-						<tr>
-							<td>Outside Hive</td>
+							<td>{hour}:{minute}:{second} {AMPM}</td>
 							<td>{humidity}%</td>
 							<td style = {{color: humidity_status_color}}>{humidity_status}</td>
 						</tr>
