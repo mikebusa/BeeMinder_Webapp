@@ -32,6 +32,7 @@ class HomePage extends Component {
 					<p className="lead">This is the homepage where you can see all of your hives at a glance.</p>
 					<hr className="my-2" />
 					<p>To see more information on a specific hive, click on Go To Hive. To navigate around the webpage, use the Navigation Bar at the top of the page.</p>
+					<p>If a hive tile appears red at the top, the hive requires attention and should be looked at in more detail. If it appears blue, the honey super is ready to be harvested.</p>
                 </Jumbotron>
 				<Container>
 					<RenderTileData />
