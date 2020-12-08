@@ -26,7 +26,7 @@ function FFTGraph (props) {
 			text: "FFT of Latest Report"
 		},
 		axisX:{
-			title:"Frequency",
+			title:"Frequency (Hz)",
 		},
 		axisY:{
 			title:"Amplitude",
