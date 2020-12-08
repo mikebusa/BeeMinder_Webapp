@@ -21,7 +21,7 @@ function RenderTileData (props) {
     const renderBody = () => {
         return hives ? (hives && hives.map(({ name, identifier, reports }) => {
             return (
-                <HomePageHiveTile hiveName = {name} hiveID = {identifier} report = {reports[0]} />
+                <HomePageHiveTile hiveName = {name} hiveID = {identifier} report = {reports[reports.length-1]} />
             )
         })) : <p style={{"color":"red", "fontSize":20}}>No Hives to Show. Use the "+ New Hive" Button to add a hive.</p>
     }

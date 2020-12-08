@@ -15,6 +15,15 @@ query FindHive($query: HiveQueryInput!) {
 				temp
 				humidity
 				weight
+				fft_data
+				bee_flags {
+					queen_present
+					multiple_queen
+					possible_mites
+					three_day_in_range
+					six_day_in_range
+					nine_day_in_range
+				}
 			}
 		}
 	}
@@ -36,6 +45,15 @@ query FindHive($query: HiveQueryInput!) {
 				temp
 				humidity
 				weight
+				fft_data
+				bee_flags {
+					queen_present
+					multiple_queen
+					possible_mites
+					three_day_in_range
+					six_day_in_range
+					nine_day_in_range
+				}
 			}
 		}
 	}

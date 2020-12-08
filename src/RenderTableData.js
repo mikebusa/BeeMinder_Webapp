@@ -23,7 +23,7 @@ function RenderTableData (props) {
 	const hives = hivesData ? hivesData.hives : null;
 
     const renderHeader = () => {
-        let headerElement = ['Hive Name', 'Last Updated', 'Date Added', 'Status', '', '']
+        let headerElement = ['Hive Name', 'Last Updated', 'Date Added', '', '']
 
         return headerElement.map((key, index) => {
             return <th key={index}>{key.toUpperCase()}</th>
@@ -41,7 +41,6 @@ function RenderTableData (props) {
 					</td>
 					<td><GetUpdateTime report = {reports[0]}/></td>
 					<td><GetCreationDate date = {created}/></td>
-					<td  style={{ color: 'green' }}>Good</td>
 					<td><EditHiveModal hiveName = {name}/></td>
 					<td><DeleteHiveModal hiveName = {name}/></td>
                 </tr>
