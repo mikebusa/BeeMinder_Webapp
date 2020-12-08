@@ -28,22 +28,41 @@ function HomePageHiveTile(props) {
 	
 	return (
 		<div>
-			{report && (temperature > 96 || temperature < 94 || humidity > 65 || humidity < 45 || (bee_flags && (bee_flags.queen_present === false || bee_flags.multiple_queen || bee_flags.possible_mites || bee_flags.three_day_in_range === false || bee_flags.six_day_in_range === false || bee_flags.nine_day_in_range === false))) ? (
-				<Alert color="danger" style={{'text-align':'center'}}>↓ THIS HIVE REQUIRES ATTENTION! ↓</Alert>
-			) : weight > 70 ? (
-				<Alert color="primary" style={{'text-align':'center'}}>↓ THIS HIVE IS READY TO HARVEST! ↓</Alert>
-			):(<p/>)}
 			<Card outline color="secondary">
-				<CardHeader>
-					<h2>
-						<CardTitle>{hiveName}</CardTitle>
-					</h2>
-					{lastUpdated === "0000-00-00T00:00:00Z" ? (
-						<CardText/>					
-					) : (
-						<CardText>Last Update: {month}/{day}/{year} at {hour}:{minute}:{second} {AMPM}</CardText>
-					)}
-				</CardHeader>
+				{report && (temperature > 96 || temperature < 94 || humidity > 65 || humidity < 45 || (bee_flags && (bee_flags.queen_present === false || bee_flags.multiple_queen || bee_flags.possible_mites || bee_flags.three_day_in_range === false || bee_flags.six_day_in_range === false || bee_flags.nine_day_in_range === false))) ? (
+					<CardHeader style={{ backgroundColor: '#FF9C9D' }}>
+						<h2>
+							<CardTitle>{hiveName} - Requires Attention!</CardTitle>
+						</h2>
+						{lastUpdated === "0000-00-00T00:00:00Z" ? (
+							<CardText/>					
+						) : (
+							<CardText>Last Update: {month}/{day}/{year} at {hour}:{minute}:{second} {AMPM}</CardText>
+						)}
+					</CardHeader>
+				) : weight > 70 ? (
+					<CardHeader style={{ backgroundColor: '#99DCFE' }}>
+						<h2>
+							<CardTitle>{hiveName} - Harvest Ready!</CardTitle>
+						</h2>
+						{lastUpdated === "0000-00-00T00:00:00Z" ? (
+							<CardText/>					
+						) : (
+							<CardText>Last Update: {month}/{day}/{year} at {hour}:{minute}:{second} {AMPM}</CardText>
+						)}
+					</CardHeader>
+				) : (
+					<CardHeader>
+						<h2>
+							<CardTitle>{hiveName}</CardTitle>
+						</h2>
+						{lastUpdated === "0000-00-00T00:00:00Z" ? (
+							<CardText/>					
+						) : (
+							<CardText>Last Update: {month}/{day}/{year} at {hour}:{minute}:{second} {AMPM}</CardText>
+						)}
+					</CardHeader>
+				)}
 				
 				{report ? (
 					<CardBody>
