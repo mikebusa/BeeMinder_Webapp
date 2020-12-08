@@ -28,8 +28,10 @@ function HomePageHiveTile(props) {
 	
 	return (
 		<div>
-			{report && (temperature > 96 || temperature < 94 || humidity > 65 || humidity < 45 || weight > 70 || (bee_flags && (bee_flags.queen_present === false || bee_flags.multiple_queen || bee_flags.possible_mites || bee_flags.three_day_in_range === false || bee_flags.six_day_in_range === false || bee_flags.nine_day_in_range === false))) ? (
-				<Alert color="danger">↓ THIS HIVE REQUIRES ATTENTION! ↓</Alert>
+			{report && (temperature > 96 || temperature < 94 || humidity > 65 || humidity < 45 || (bee_flags && (bee_flags.queen_present === false || bee_flags.multiple_queen || bee_flags.possible_mites || bee_flags.three_day_in_range === false || bee_flags.six_day_in_range === false || bee_flags.nine_day_in_range === false))) ? (
+				<Alert color="danger" style={{'text-align':'center'}}>↓ THIS HIVE REQUIRES ATTENTION! ↓</Alert>
+			) : weight > 70 ? (
+				<Alert color="primary" style={{'text-align':'center'}}>↓ THIS HIVE IS READY TO HARVEST! ↓</Alert>
 			):(<p/>)}
 			<Card outline color="secondary">
 				<CardHeader>
