@@ -3,6 +3,7 @@ import HivePageNavBar from './HivePageNavBar';
 import Footer from './Footer'
 import { Container,Jumbotron,Table} from 'reactstrap';
 import GraphModal from './GraphModal';
+import RenderFlagData from './RenderFlagData';
 //Apollo imports
 import { useQuery } from "@apollo/client";
 import { FIND_HIVE } from "./graphql-operations";
@@ -23,6 +24,13 @@ function HivePage (props) {
 	const humidity = report ? report.sensor_data.humidity : "0";
 	const weight = report ? report.sensor_data.weight : "0";
 	const bee_flags = report ? report.sensor_data.bee_flags : null;
+	const queen = bee_flags ? bee_flags.queen_present : null;
+	const mqueens = bee_flags ? bee_flags.multiple_queen : null;
+	const mites = bee_flags ? bee_flags.possible_mites : null;
+	const tdr = bee_flags ? bee_flags.three_day_in_range : null;
+	const sdr = bee_flags ? bee_flags.six_day_in_range : null;
+	const ndr = bee_flags ? bee_flags.nine_day_in_range : null;
+	
 	const fft_data = report ? report.sensor_data.fft_data : null;
 	const len = fft_data ? fft_data.length : 0;
 	
@@ -37,19 +45,19 @@ function HivePage (props) {
 	const second = lastUpdated.substr(17, 2);
 	
 	const temp_status = (temperature >= 94  && temperature <= 96) ? "Good" :
-						(temperature === 0) ? "Critical" : "Warning";
-	const temp_status_color = (temperature >= 94 && temperature <= 96) ? "green" :
-							  (temperature === 0) ? "red" : "gold";
+						(temperature === 0) ? "Critical" : "Warning";	
+	const temp_row_color = (temperature >= 94 && temperature <= 96) ? "white" :
+						   (temperature === 0) ? "#FF9C9D" : "#FF9C9D";
 							  
 	const humidity_status = (humidity >= 45 && humidity <= 65) ? "Good" :
 						    (humidity === 0) ? "Critical" : "Warning";
-	const humidity_status_color = (humidity >= 45 && humidity <= 65) ? "green" :
-							      (humidity === 0) ? "red" : "gold";
+	const humidity_row_color = (humidity >= 45 && humidity <= 65) ? "white" :
+						   (humidity === 0) ? "#FF9C9D" : "#FF9C9D";
 
 	const weight_status = (weight < 70) ? "Good" :
 						  (weight === 0) ? "Critical" : "Ready to Harvest!";
-	const weight_status_color = (weight >50 && weight < 80) ? "green" :
-							    (weight >40 && weight < 130) ? "blue" : "red";	
+	const weight_row_color = (weight < 70) ? "white" :
+						   (weight === 0) ? "#FF9C9D" : "#99DCFE";
 
 	return (
 		<div>
@@ -68,52 +76,11 @@ function HivePage (props) {
 				)}
 				{!bee_flags ? (
 					<p style={{"color":"red"}}>Audio Information not collected from the hive. Refresh to try again.</p>
-				) : bee_flags && bee_flags.queen_present === 1 ? (
-					<p style={{"color":"green"}}>A queen was found in the hive.</p>
+				) : queen === 1 && mqueens === 0 && mites === 0 && tdr === 0 && sdr === 0 && ndr === 0 ? (
+					<p style={{"color":"green"}}>Based on the audio recording, the hive is healthy!</p>
 				) : (
-					<p style={{"color":"red"}}>There is a not queen present!</p>
+					<RenderFlagData flags = {bee_flags}/>
 				)}
-				{!bee_flags ? (
-					<p/>
-				) : bee_flags && bee_flags.multiple_queen === 0 ? (
-					<p style={{"color":"green"}}>There are not multiple queens in the hive.</p>
-				) : (
-					<p style={{"color":"red"}}>Multiple queens were detected in the hive!</p>
-				)}
-				{!bee_flags ? (
-					<p/>
-				) : bee_flags && bee_flags.possible_mites === 0 ? (
-					<p style={{"color":"green"}}>No mites detected in the hive.</p>
-				) : (
-					<p style={{"color":"red"}}>Possible Mite Infestation!</p>
-				)}
-				{!bee_flags ? (
-					<p/>
-				) : bee_flags && bee_flags.three_day_in_range === 0 ? (
-					<p style={{"color":"green"}}>There is a healthy number of 3-day-old bees in the hive.</p>
-				) : bee_flags && bee_flags.three_day_in_range === 1 ? (
-					<p style={{"color":"red"}}>There are too few 3-day-old bees in the hive!</p>
-				) : (
-					<p style={{"color":"red"}}>There are too many 3-day-old bees in the hive!</p>
-				)}
-				{!bee_flags ? (
-					<p/>
-				) : bee_flags && bee_flags.six_day_in_range === 0 ? (
-					<p style={{"color":"green"}}>There is a healthy number of 6-day-old bees in the hive.</p>
-				) : bee_flags && bee_flags.six_day_in_range === 1 ? (
-					<p style={{"color":"red"}}>There are too few 6-day-old bees in the hive!</p>
-				) : (
-					<p style={{"color":"red"}}>There are too many 6-day-old bees in the hive!</p>
-				)}
-				{!bee_flags ? (
-					<p/>
-				) : bee_flags && bee_flags.nine_day_in_range === 0 ? (
-					<p style={{"color":"green"}}>There is a healthy number of 9-day-old bees in the hive.</p>
-				) : bee_flags && bee_flags.nine_day_in_range === 1 ? (
-					<p style={{"color":"red"}}>There are too few 9-day-old bees in the hive!</p>
-				) : (
-					<p style={{"color":"red"}}>There are too many 9-day-old bees in the hive!</p>
-				)}				
 				<h3>Temperature Sensors:</h3>
 				<Table hover>
 					<thead>
@@ -124,10 +91,10 @@ function HivePage (props) {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr style = {{backgroundColor: temp_row_color}}>
 							<td>{hour}:{minute}:{second} {AMPM}</td>
 							<td>{temperature}°F</td>
-							<td style = {{color: temp_status_color}}>{temp_status}</td>
+							<td>{temp_status}</td>
 						</tr>
 					</tbody>
 				</Table>
@@ -142,10 +109,10 @@ function HivePage (props) {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr style = {{backgroundColor: humidity_row_color}}>
 							<td>{hour}:{minute}:{second} {AMPM}</td>
 							<td>{humidity}%</td>
-							<td style = {{color: humidity_status_color}}>{humidity_status}</td>
+							<td>{humidity_status}</td>
 						</tr>
 					</tbody>
 				</Table>
@@ -160,10 +127,10 @@ function HivePage (props) {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr style = {{backgroundColor: weight_row_color}}>
 							<td>{hour}:{minute}:{second} {AMPM}</td>
 							<td>{weight} lbs</td>
-							<td style = {{color: weight_status_color}}>{weight_status}</td>
+							<td>{weight_status}</td>
 						</tr>
 					</tbody>
 				</Table>

@@ -29,7 +29,7 @@ function HomePageHiveTile(props) {
 	return (
 		<div>
 			<Card outline color="secondary">
-				{report && (temperature > 96 || temperature < 94 || humidity > 65 || humidity < 45 || (bee_flags && (bee_flags.queen_present === 0 || bee_flags.multiple_queen === 1 || bee_flags.possible_mites === 1 || bee_flags.three_day_in_range != 0 || bee_flags.six_day_in_range != 0 || bee_flags.nine_day_in_range != 0))) ? (
+				{report && (temperature > 96 || temperature < 94 || humidity > 65 || humidity < 45 || (bee_flags && (bee_flags.queen_present === 0 || bee_flags.multiple_queen === 1 || bee_flags.possible_mites === 1 || bee_flags.three_day_in_range !== 0 || bee_flags.six_day_in_range !== 0 || bee_flags.nine_day_in_range !== 0))) ? (
 					<CardHeader style={{ backgroundColor: '#FF9C9D' }}>
 						<h2>
 							<CardTitle>{hiveName} ⚠️</CardTitle>
