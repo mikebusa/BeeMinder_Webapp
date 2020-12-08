@@ -25,8 +25,6 @@ function HivePage (props) {
 	const bee_flags = report ? report.sensor_data.bee_flags : null;
 	const fft_data = report ? report.sensor_data.fft_data : null;
 	const len = fft_data ? fft_data.length : 0;
-	console.log(fft_data)
-	console.log(len)
 	
 	const lastUpdated = report ? report.time_recorded : "0000-00-00T00:00:00Z";
 	const month = lastUpdated.substr(5, 2);
@@ -70,46 +68,52 @@ function HivePage (props) {
 				)}
 				{!bee_flags ? (
 					<p style={{"color":"red"}}>Audio Information not collected from the hive. Refresh to try again.</p>
-				) : bee_flags && bee_flags.queen_present ? (
+				) : bee_flags && bee_flags.queen_present === 1 ? (
 					<p style={{"color":"green"}}>A queen was found in the hive.</p>
 				) : (
 					<p style={{"color":"red"}}>There is a not queen present!</p>
 				)}
 				{!bee_flags ? (
 					<p/>
-				) : bee_flags && bee_flags.multiple_queen === false ? (
+				) : bee_flags && bee_flags.multiple_queen === 0 ? (
 					<p style={{"color":"green"}}>There are not multiple queens in the hive.</p>
 				) : (
 					<p style={{"color":"red"}}>Multiple queens were detected in the hive!</p>
 				)}
 				{!bee_flags ? (
 					<p/>
-				) : bee_flags && bee_flags.possible_mites === false ? (
+				) : bee_flags && bee_flags.possible_mites === 0 ? (
 					<p style={{"color":"green"}}>No mites detected in the hive.</p>
 				) : (
 					<p style={{"color":"red"}}>Possible Mite Infestation!</p>
 				)}
 				{!bee_flags ? (
 					<p/>
-				) : bee_flags && bee_flags.three_day_in_range ? (
+				) : bee_flags && bee_flags.three_day_in_range === 0 ? (
 					<p style={{"color":"green"}}>There is a healthy number of 3-day-old bees in the hive.</p>
+				) : bee_flags && bee_flags.three_day_in_range === 1 ? (
+					<p style={{"color":"red"}}>There are too few 3-day-old bees in the hive!</p>
 				) : (
-					<p style={{"color":"red"}}>There is an unhealthy number of 3-day-old bees in the hive!</p>
+					<p style={{"color":"red"}}>There are too many 3-day-old bees in the hive!</p>
 				)}
 				{!bee_flags ? (
 					<p/>
-				) : bee_flags && bee_flags.six_day_in_range ? (
+				) : bee_flags && bee_flags.six_day_in_range === 0 ? (
 					<p style={{"color":"green"}}>There is a healthy number of 6-day-old bees in the hive.</p>
+				) : bee_flags && bee_flags.six_day_in_range === 1 ? (
+					<p style={{"color":"red"}}>There are too few 6-day-old bees in the hive!</p>
 				) : (
-					<p style={{"color":"red"}}>There is an unhealthy number of 6-day-old bees in the hive!</p>
+					<p style={{"color":"red"}}>There are too many 6-day-old bees in the hive!</p>
 				)}
 				{!bee_flags ? (
 					<p/>
-				) : bee_flags && bee_flags.nine_day_in_range ? (
+				) : bee_flags && bee_flags.nine_day_in_range === 0 ? (
 					<p style={{"color":"green"}}>There is a healthy number of 9-day-old bees in the hive.</p>
+				) : bee_flags && bee_flags.nine_day_in_range === 1 ? (
+					<p style={{"color":"red"}}>There are too few 9-day-old bees in the hive!</p>
 				) : (
-					<p style={{"color":"red"}}>There is an unhealthy number of 9-day-old bees in the hive!</p>
-				)}					
+					<p style={{"color":"red"}}>There are too many 9-day-old bees in the hive!</p>
+				)}				
 				<h3>Temperature Sensors:</h3>
 				<Table hover>
 					<thead>
