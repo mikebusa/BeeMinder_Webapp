@@ -20,8 +20,8 @@ function HivePage (props) {
 	
 	const report = hive ? hive.reports[hive.reports.length-1] : null;
 	
-	const temperature = report ? report.sensor_data.temp : "0";
-	const humidity = report ? report.sensor_data.humidity : "0";
+	const temperature = report ? report.sensor_data.temp/100.0 : "0";
+	const humidity = report ? report.sensor_data.humidity/100.0 : "0";
 	const weight = report ? report.sensor_data.weight : "0";
 	const bee_flags = report ? report.sensor_data.bee_flags : null;
 	const queen = bee_flags ? bee_flags.queen_present : null;

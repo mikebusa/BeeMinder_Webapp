@@ -7,12 +7,12 @@ function FFTGraph (props) {
 	const numPoints = props.numPoints;
 	
 	const generateDataPoints = () => {
-		var xVal = 20, yVal;
+		var xVal = 150, yVal;
 		var dps = [];
-		for(var i = 0; i < numPoints; i++) {
+		for(var i = 37; i < 125; i++) {
 			yVal = ypoints ? ypoints[i] : 0;
 			dps.push({x: xVal,y: yVal});	
-			xVal++;
+			xVal+=4;
 		}
 		return dps;
 	}

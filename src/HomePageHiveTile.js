@@ -9,8 +9,8 @@ function HomePageHiveTile(props) {
 
 	const report = props.report;
 	
-	const temperature = report ? report.sensor_data.temp : "0";
-	const humidity = report ? report.sensor_data.humidity : "0";
+	const temperature = report ? report.sensor_data.temp/100.0 : "0";
+	const humidity = report ? report.sensor_data.humidity/100.0 : "0";
 	const weight = report ? report.sensor_data.weight : "0";
 	const bee_flags = report ? report.sensor_data.bee_flags : null;
 	
