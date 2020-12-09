@@ -23,7 +23,7 @@ class NewHiveForm extends Component {
 				},  
 				HiveID: {
 					value: '',
-					placeholder: 'BeeMinder System ID Number',
+					placeholder: 'ID: dev_XX_XX_XX_XX_XX_XX',
 					valid: false,
 					validationRules: {
 						minLength: 6,
