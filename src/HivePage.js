@@ -69,7 +69,7 @@ function HivePage (props) {
 				<h5>Last Updated: {month}/{day}/{year} at {hour}:{minute}:{second} {AMPM}  </h5>		
 			</Jumbotron>
 			<Container>
-				<h3>Audio Inferences: </h3>
+				<h3>Audio Inferences:</h3>
 				{!bee_flags ? (
 					<p style={{"color":"red"}}>Audio Information not collected from the hive. Refresh to try again.</p>
 				) : queen === 1 && mqueens === 0 && mites === 0 && tdr === 0 && sdr === 0 && ndr === 0 ? (
